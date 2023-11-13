@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3fbq5d07sjkb"]
+
+[ext_resource type="Script" path="res://Scripts/Components/HealthComponent.cs" id="1_w44jg"]
+
+[node name="HealthComponent" type="Node"]
+script = ExtResource("1_w44jg")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
