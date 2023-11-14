@@ -58,7 +58,7 @@ InvulnerabilityTime = 0.5
 IsPlayable = true
 ControllableEntity = NodePath("../..")
 StartingSpeed = 100
-MaxSpeed = 100
+MaxSpeed = 1000
 
 [node name="ProjectileLauncherComponent" parent="Components" index="2" instance=ExtResource("3_3r1ga")]
 position = Vector2(15, 2)
