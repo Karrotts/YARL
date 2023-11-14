@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://djjxgqkfus31j"]
+[gd_scene load_steps=8 format=3 uid="uid://djjxgqkfus31j"]
 
 [ext_resource type="PackedScene" uid="uid://cwk1gdjca071j" path="res://Scenes/EntityBase/character_base.tscn" id="1_phsnr"]
 [ext_resource type="Script" path="res://Scripts/CharacterScripts/HarryCharacter.cs" id="2_rt80r"]
+[ext_resource type="PackedScene" uid="uid://c44ni78ff1wyp" path="res://Scenes/Components/projectile_launcher_component.tscn" id="3_3r1ga"]
+[ext_resource type="PackedScene" uid="uid://bms37d3cmxbp2" path="res://Scenes/Projectiles/arrow_projectile.tscn" id="4_oo0q5"]
 
 [sub_resource type="Animation" id="Animation_db7ng"]
 resource_name = "player_move"
@@ -43,8 +45,9 @@ _data = {
 "player_stop": SubResource("Animation_temp3")
 }
 
-[node name="Harry" node_paths=PackedStringArray("HealthComponent", "MovementComponent") instance=ExtResource("1_phsnr")]
+[node name="Harry" node_paths=PackedStringArray("ProjectileLauncherComponent", "HealthComponent", "MovementComponent") instance=ExtResource("1_phsnr")]
 script = ExtResource("2_rt80r")
+ProjectileLauncherComponent = NodePath("Components/ProjectileLauncherComponent")
 HealthComponent = NodePath("Components/HealthComponent")
 MovementComponent = NodePath("Components/MovementComponent")
 
@@ -56,6 +59,11 @@ IsPlayable = true
 ControllableEntity = NodePath("../..")
 StartingSpeed = 100
 MaxSpeed = 100
+
+[node name="ProjectileLauncherComponent" parent="Components" index="2" instance=ExtResource("3_3r1ga")]
+position = Vector2(15, 2)
+Projectile = ExtResource("4_oo0q5")
+ProjectileCooldown = 0.5
 
 [node name="CharacterCamera" parent="." index="2"]
 zoom = Vector2(2, 2)

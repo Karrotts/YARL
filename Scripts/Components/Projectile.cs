@@ -3,9 +3,6 @@ using System;
 
 public partial class Projectile : Area2D
 {
-    [Export]
-    public Node2D Root { get; set; }
-
     [Export(PropertyHint.Range, "0,10000")]
     public float Speed { get; set; }
 

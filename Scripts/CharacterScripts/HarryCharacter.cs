@@ -31,12 +31,10 @@ public partial class HarryCharacter : Character
         Sprite2D sprite = GetNode<Sprite2D>("Sprites/CharacterSprite"); 
         bool flipValue = sprite.FlipH;
         sprite.FlipH = GetGlobalMousePosition().X < GlobalPosition.X;
-        /**
         if (flipValue != sprite.FlipH)
             ProjectileLauncherComponent.Position = new Vector2(
                 ProjectileLauncherComponent.Position.X * -1,
                 ProjectileLauncherComponent.Position.Y
             );
-        */
     }
 }
