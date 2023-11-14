@@ -35,6 +35,7 @@ public partial class Projectile : Area2D
     public override void _Ready()
     {
         Position = StartingPosition;
+        Scale *= Size;
         _currentSpeed = Speed;
 
         // setup despawn timer
