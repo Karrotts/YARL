@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://djjxgqkfus31j"]
+[gd_scene load_steps=9 format=3 uid="uid://djjxgqkfus31j"]
 
 [ext_resource type="PackedScene" uid="uid://cwk1gdjca071j" path="res://Scenes/EntityBase/character_base.tscn" id="1_phsnr"]
 [ext_resource type="Script" path="res://Scripts/CharacterScripts/HarryCharacter.cs" id="2_rt80r"]
@@ -45,6 +45,9 @@ _data = {
 "player_stop": SubResource("Animation_temp3")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eoro"]
+radius = 12.0
+
 [node name="Harry" node_paths=PackedStringArray("ProjectileLauncherComponent", "HealthComponent", "MovementComponent") instance=ExtResource("1_phsnr")]
 script = ExtResource("2_rt80r")
 ProjectileLauncherComponent = NodePath("Components/ProjectileLauncherComponent")
@@ -57,13 +60,15 @@ InvulnerabilityTime = 0.5
 [node name="MovementComponent" parent="Components" index="1" node_paths=PackedStringArray("ControllableEntity")]
 IsPlayable = true
 ControllableEntity = NodePath("../..")
-StartingSpeed = 100
-MaxSpeed = 1000
+StartingSpeed = 100.0
+MaxSpeed = 10000.0
 
 [node name="ProjectileLauncherComponent" parent="Components" index="2" instance=ExtResource("3_3r1ga")]
 position = Vector2(15, 2)
 Projectile = ExtResource("4_oo0q5")
-ProjectileCooldown = 0.5
+ProjectileRotationAmount = 0.314
+ProjectileCooldown = 0.4
+RotateTowardsMouse = true
 
 [node name="CharacterCamera" parent="." index="2"]
 zoom = Vector2(2, 2)
@@ -72,3 +77,8 @@ zoom = Vector2(2, 2)
 libraries = {
 "": SubResource("AnimationLibrary_xeebb")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+visible = false
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_3eoro")

@@ -19,11 +19,11 @@ public partial class MovementComponent : Node
 
     [Export(PropertyHint.Range, "1,10000")]
     [ExportGroup("Stats")]
-    public int StartingSpeed = 10;
+    public float StartingSpeed = 10f;
 
     [Export(PropertyHint.Range, "1,10000")]
     [ExportGroup("Stats")]
-    public int MaxSpeed = 10;
+    public float MaxSpeed = 10f;
 
     [Export]
     public bool ForceStopMovement = false;
@@ -35,12 +35,12 @@ public partial class MovementComponent : Node
         get { return !ForceStopMovement && !TemporaryStopMovement; }
     }
 
-    public int CurrentSpeed
+    public float CurrentSpeed
     {
         get { return _currentSpeed; }
         set
         {
-            _currentSpeed = value <= 0 ? 0 : value >= MaxSpeed ? MaxSpeed : value;
+            _currentSpeed = value <= 0f ? 0f : value >= MaxSpeed ? MaxSpeed : value;
         }
     }
 
@@ -64,7 +64,7 @@ public partial class MovementComponent : Node
         }
     }
 
-    private int _currentSpeed;
+    private float _currentSpeed;
     private bool _isMoving;
 
     public override void _Ready()

@@ -5,11 +5,20 @@ public partial class ProjectileLauncherComponent : Node2D
     [Export]
     public PackedScene Projectile { get; set; }
 
+    [Export]
+    public int ProjectileAmount { get; set; } = 1;
+
+    [Export]
+    public float ProjectileRotationAmount { get; set; } = 0f;
+
     [Export(PropertyHint.Range, "0,100")]
     public float ProjectileCooldown { get; set; } = 1f;
 
     [Export]
     public bool ProjectileToggle { get; set; } = true;
+
+    [Export]
+    public bool RotateTowardsMouse { get; set; } = false;
 
     public bool ProjectileOnCooldown
     {
@@ -50,17 +59,27 @@ public partial class ProjectileLauncherComponent : Node2D
         if (Input.IsMouseButtonPressed(MouseButton.Left) && CanProjectile)
         {
             ProjectileOnCooldown = true;
+            SpawnProjectiles();
+        }
+    }
+
+    private void SpawnProjectiles()
+    {
+        float rotationAmount = 0f + (-1 * ProjectileRotationAmount * (ProjectileAmount / 2));
+        for (int i = 0; i < ProjectileAmount; i++)
+        {
             Projectile projectile = (Projectile)Projectile.Instantiate();
-            projectile.MovingDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized();
+            projectile.MovingDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized().Rotated(rotationAmount);
             projectile.StartingPosition = GetNode<Marker2D>("ProjectileLaunchPoint").GlobalPosition;
-            projectile.Rotation = projectile.MovingDirection.Angle();
             GetTree().Root.AddChild(projectile);
+            rotationAmount += ProjectileRotationAmount;
         }
     }
 
     private void HandleRotation()
     {
-        LookAt(GetGlobalMousePosition());
+        if (RotateTowardsMouse)
+            LookAt(GetGlobalMousePosition());
     }
 
     private void StartCooldownTimer()

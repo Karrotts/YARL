@@ -11,28 +11,12 @@ public partial class Character : CharacterBody2D
     [ExportGroup("Nodes")]
     public MovementComponent MovementComponent { get; set; }
 
-    [Export]
-    [ExportGroup("Modifiers")]
-    public int SpeedModifier
-    {
-        get { return _speedModifier; }
-        set 
-        {
-            if (MovementComponent != null)
-            {
-                MovementComponent.CurrentSpeed += value - _speedModifier;
-            }
-            _speedModifier = value;
-        }
-    }
-
-    private int _speedModifier;
+    public CharacterInventory CharacterInventory { get; set; }
 
     public override void _Ready()
     {
-        // reset values to trigger update methods
-        SpeedModifier = _speedModifier * -1;
-        SpeedModifier = Mathf.Abs(_speedModifier);
+        CharacterInventory = GetNode<CharacterInventory>("/root/CharacterInventory");
+        CharacterInventory.ActiveCharacter = this;
     }
 
     public override void _Process(double delta)

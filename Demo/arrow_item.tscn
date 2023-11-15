@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://xuagrtfftc40"]
+
+[ext_resource type="Texture2D" uid="uid://gu834ioj3ypl" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0119.png" id="1_3lhyw"]
+[ext_resource type="Script" path="res://Demo/ArrowItem.cs" id="1_adf2v"]
+[ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="2_ivthw"]
+
+[sub_resource type="Animation" id="Animation_jnfpx"]
+resource_name = "bob"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArrowItemSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kaa8l"]
+_data = {
+"bob": SubResource("Animation_jnfpx")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l05mf"]
+radius = 8.0
+
+[node name="ArrowItem" type="Area2D"]
+script = ExtResource("1_adf2v")
+
+[node name="ArrowItemSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -3.42591)
+texture = ExtResource("1_3lhyw")
+region_rect = Rect2(-2, -2, 20, 20)
+
+[node name="HighlightSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.380392)
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 6)
+scale = Vector2(0.10993, -0.0523022)
+texture = ExtResource("2_ivthw")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "bob"
+libraries = {
+"": SubResource("AnimationLibrary_kaa8l")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_l05mf")

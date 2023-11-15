@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalControls="*res://Scripts/GlobalControls.cs"
+CharacterInventory="*res://Scripts/CharacterInventory.cs"
 
 [display]
 
@@ -27,6 +28,7 @@ window/size/viewport_height=720
 window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0060.png"
 
 [dotnet]
 

@@ -53,6 +53,7 @@ public partial class Projectile : Area2D
     public virtual void HandleProjectileMovement(double delta)
     {
         Vector2 movement = MovingDirection;
+        Rotation = MovingDirection.Angle();
 
         // apply basic forces
         movement *= _currentSpeed;
