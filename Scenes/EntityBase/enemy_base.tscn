@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://du01mxuiidu5r"]
+
+[ext_resource type="Texture2D" uid="uid://xfluj6ugiair" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0121.png" id="1_asnd5"]
+[ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="2_ku6kj"]
+
+[node name="EnemyBase" type="CharacterBody2D"]
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="EnemySprite" type="Sprite2D" parent="Sprites"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_asnd5")
+
+[node name="ShadowSprite" type="Sprite2D" parent="Sprites"]
+modulate = Color(0, 0, 0, 0.117647)
+z_index = -1
+position = Vector2(0, 15)
+scale = Vector2(0.237793, 0.115723)
+texture = ExtResource("2_ku6kj")

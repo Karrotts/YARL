@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://xuagrtfftc40"]
+[gd_scene load_steps=7 format=3 uid="uid://dkfrrcgcwb8rn"]
 
-[ext_resource type="Texture2D" uid="uid://gu834ioj3ypl" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0119.png" id="1_3lhyw"]
-[ext_resource type="Script" path="res://Demo/ArrowItem.cs" id="1_adf2v"]
-[ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="2_ivthw"]
+[ext_resource type="Script" path="res://Demo/ArrowItem.cs" id="1_2eqrw"]
+[ext_resource type="Texture2D" uid="uid://dwj4fil0wwu7d" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0115.png" id="2_u3a7a"]
+[ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="3_vls8a"]
 
 [sub_resource type="Animation" id="Animation_jnfpx"]
 resource_name = "bob"
@@ -11,7 +11,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ArrowItemSprite:position")
+tracks/0/path = NodePath("ItemSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,12 +29,13 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_l05mf"]
 radius = 8.0
 
-[node name="ArrowItem" type="Area2D"]
-script = ExtResource("1_adf2v")
+[node name="ItemBase" type="Area2D" groups=["Entity", "Item"]]
+script = ExtResource("1_2eqrw")
 
-[node name="ArrowItemSprite" type="Sprite2D" parent="."]
+[node name="ItemSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_3lhyw")
+position = Vector2(0, -3.9444)
+texture = ExtResource("2_u3a7a")
 region_rect = Rect2(-2, -2, 20, 20)
 
 [node name="HighlightSprite" type="Sprite2D" parent="."]
@@ -43,7 +44,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(0, 6)
 scale = Vector2(0.10993, -0.0523022)
-texture = ExtResource("2_ivthw")
+texture = ExtResource("3_vls8a")
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

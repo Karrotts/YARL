@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Components/Projectile.cs" id="1_edwg2"]
 
-[node name="ProjectileBase" type="Area2D"]
+[node name="ProjectileBase" type="Area2D" groups=["Entity", "Projectile"]]
 script = ExtResource("1_edwg2")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="."]

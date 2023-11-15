@@ -156,12 +156,3 @@ layer_0/tile_data = PackedInt32Array(-1572905, 0, 0, -1507369, 65536, 0, -144183
 
 [node name="ArrowItem" parent="." instance=ExtResource("3_7ykta")]
 position = Vector2(77, -20)
-
-[node name="ArrowItem2" parent="." instance=ExtResource("3_7ykta")]
-position = Vector2(117, -38)
-
-[node name="ArrowItem3" parent="." instance=ExtResource("3_7ykta")]
-position = Vector2(116, 2)
-
-[node name="ArrowItem4" parent="." instance=ExtResource("3_7ykta")]
-position = Vector2(83, -59)
