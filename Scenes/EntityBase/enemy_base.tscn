@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://du01mxuiidu5r"]
+[gd_scene load_steps=5 format=3 uid="uid://du01mxuiidu5r"]
 
-[ext_resource type="Texture2D" uid="uid://xfluj6ugiair" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0121.png" id="1_asnd5"]
+[ext_resource type="Texture2D" uid="uid://demll1w38qj5b" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0095.png" id="1_50fea"]
 [ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="2_ku6kj"]
+[ext_resource type="PackedScene" uid="uid://d3fbq5d07sjkb" path="res://Scenes/Components/health_component.tscn" id="3_128n2"]
+[ext_resource type="PackedScene" uid="uid://bcngvuy27q2wn" path="res://Scenes/Components/movement_component.tscn" id="4_xqm6o"]
 
 [node name="EnemyBase" type="CharacterBody2D"]
 
@@ -10,7 +12,7 @@
 [node name="EnemySprite" type="Sprite2D" parent="Sprites"]
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("1_asnd5")
+texture = ExtResource("1_50fea")
 
 [node name="ShadowSprite" type="Sprite2D" parent="Sprites"]
 modulate = Color(0, 0, 0, 0.117647)
@@ -18,3 +20,11 @@ z_index = -1
 position = Vector2(0, 15)
 scale = Vector2(0.237793, 0.115723)
 texture = ExtResource("2_ku6kj")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HealthComponent" parent="Components" instance=ExtResource("3_128n2")]
+InvulnerabilityTime = 0.25
+
+[node name="MovementComponent" parent="Components" instance=ExtResource("4_xqm6o")]
+MaxSpeed = 1000.0

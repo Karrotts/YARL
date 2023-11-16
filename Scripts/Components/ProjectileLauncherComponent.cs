@@ -20,6 +20,31 @@ public partial class ProjectileLauncherComponent : Node2D
     [Export]
     public bool RotateTowardsMouse { get; set; } = false;
 
+    [Export]
+    [ExportGroup("Projectile Modifiers")]
+    public float ProjectileSpeedModifier { get; set; } = 1f;
+
+    [Export]
+    [ExportGroup("Projectile Modifiers")]
+    public float ProjectileSizeModifier { get; set; } = 1f;
+
+    [Export]
+    [ExportGroup("Projectile Modifiers")]
+    public float ProjectileDamageModifier { get; set; } = 1f;
+
+    [Export]
+    [ExportGroup("Projectile Modifiers")]
+    public float ProjectileDragModifier { get; set; } = 1f;
+
+    [Export]
+    [ExportGroup("Projectile Modifiers")]
+    public bool ProjectileHomingModifier { get; set; } = false;
+
+    [Export]
+    [ExportGroup("Projectile Modifiers")]
+    public bool ProjectileBoomerangModifier { get; set; } = false;
+
+
     public bool ProjectileOnCooldown
     {
         get { return _projectileOnCooldown; }
@@ -71,9 +96,22 @@ public partial class ProjectileLauncherComponent : Node2D
             Projectile projectile = (Projectile)Projectile.Instantiate();
             projectile.MovingDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized().Rotated(rotationAmount);
             projectile.StartingPosition = GetNode<Marker2D>("ProjectileLaunchPoint").GlobalPosition;
+            ApplyModifiersToProjectile(projectile);
             GetTree().Root.AddChild(projectile);
             rotationAmount += ProjectileRotationAmount;
         }
+    }
+
+    private void ApplyModifiersToProjectile(Projectile projectile)
+    {
+        // TODO: Maybe its better to have these as strength instead of booleans
+        projectile.IsBoomerang = ProjectileBoomerangModifier;
+        projectile.IsHoming = ProjectileHomingModifier;
+
+        projectile.Speed *= ProjectileSpeedModifier;
+        projectile.Size *= ProjectileSizeModifier;
+        projectile.Drag *= ProjectileDragModifier;
+        projectile.Damage = projectile.Damage + (int)(projectile.Damage * ProjectileDamageModifier);
     }
 
     private void HandleRotation()

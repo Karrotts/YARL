@@ -49,6 +49,7 @@ _data = {
 radius = 12.0
 
 [node name="Harry" node_paths=PackedStringArray("ProjectileLauncherComponent", "HealthComponent", "MovementComponent") instance=ExtResource("1_phsnr")]
+collision_mask = 31
 script = ExtResource("2_rt80r")
 ProjectileLauncherComponent = NodePath("Components/ProjectileLauncherComponent")
 HealthComponent = NodePath("Components/HealthComponent")
@@ -69,6 +70,7 @@ Projectile = ExtResource("4_oo0q5")
 ProjectileRotationAmount = 0.314
 ProjectileCooldown = 0.4
 RotateTowardsMouse = true
+ProjectileBoomerangModifier = true
 
 [node name="CharacterCamera" parent="." index="2"]
 zoom = Vector2(2, 2)

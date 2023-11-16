@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public partial class CharacterInventory : Node
 {
     public Character ActiveCharacter { get; set; }
+
     public List<IItem> Items;
 
     public override void _Ready()
@@ -16,7 +17,11 @@ public partial class CharacterInventory : Node
     {
         if (Input.IsKeyPressed(Key.Space))
         {
-            ReapplyItems();
+            Projectile projectile = new Projectile();
+            PackedScene packed = new PackedScene();
+            packed.Pack(projectile);
+            Node node = packed.Instantiate();
+            AddChild(node);
         }
     }
 

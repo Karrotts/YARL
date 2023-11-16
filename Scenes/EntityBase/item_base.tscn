@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dkfrrcgcwb8rn"]
 
-[ext_resource type="Script" path="res://Demo/ArrowItem.cs" id="1_2eqrw"]
+[ext_resource type="Script" path="res://Scripts/EntityBase/Item.cs" id="1_r1i3g"]
 [ext_resource type="Texture2D" uid="uid://dwj4fil0wwu7d" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0115.png" id="2_u3a7a"]
 [ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="3_vls8a"]
 
@@ -30,11 +30,11 @@ _data = {
 radius = 8.0
 
 [node name="ItemBase" type="Area2D" groups=["Entity", "Item"]]
-script = ExtResource("1_2eqrw")
+script = ExtResource("1_r1i3g")
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -3.9444)
+position = Vector2(0, -0.92859)
 texture = ExtResource("2_u3a7a")
 region_rect = Rect2(-2, -2, 20, 20)
 

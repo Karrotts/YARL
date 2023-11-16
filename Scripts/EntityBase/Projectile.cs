@@ -52,14 +52,17 @@ public partial class Projectile : Area2D
 
     public virtual void HandleProjectileMovement(double delta)
     {
+        Vector2 counterForce = new Vector2();
+        if (IsBoomerang)
+        {
+            Vector2 targetDirection = GlobalPosition.DirectionTo(StartingPosition);
+            counterForce = targetDirection * 25f;
+        }
+
         Vector2 movement = MovingDirection;
         Rotation = MovingDirection.Angle();
-
-        // apply basic forces
         movement *= _currentSpeed;
-
-        // apply extensions (homing / boomerang) TODO
-
+        movement += counterForce;
         Position += movement * (float)delta;
         MovingDirection = movement.Normalized();
         _currentSpeed -= Drag;
