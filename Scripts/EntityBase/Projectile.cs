@@ -43,6 +43,8 @@ public partial class Projectile : Area2D
         despawnTimer.WaitTime = Lifespan;
         despawnTimer.Timeout += () => QueueFree();
         despawnTimer.Start();
+
+        BodyEntered += OnBodyEntered;
     }
 
     public override void _Process(double delta)
@@ -52,19 +54,21 @@ public partial class Projectile : Area2D
 
     public virtual void HandleProjectileMovement(double delta)
     {
-        Vector2 counterForce = new Vector2();
-        if (IsBoomerang)
-        {
-            Vector2 targetDirection = GlobalPosition.DirectionTo(StartingPosition);
-            counterForce = targetDirection * 25f;
-        }
+        Vector2 movement = Position;
 
-        Vector2 movement = MovingDirection;
-        Rotation = MovingDirection.Angle();
-        movement *= _currentSpeed;
-        movement += counterForce;
-        Position += movement * (float)delta;
-        MovingDirection = movement.Normalized();
+        // move towards rotation
+        movement.X = Mathf.Cos(Rotation);
+        movement.Y = Mathf.Sin(Rotation);
+        Position += movement * _currentSpeed * (float)delta;
         _currentSpeed -= Drag;
+    }
+
+    public virtual void OnBodyEntered(Node2D node)
+    {
+        if (node.GetGroups().Contains("Enemy"))
+        {
+            (node as Enemy).HealthComponent.DealDamage(Damage);
+            QueueFree();
+        }
     }
 }

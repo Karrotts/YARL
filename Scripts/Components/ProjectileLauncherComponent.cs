@@ -95,6 +95,7 @@ public partial class ProjectileLauncherComponent : Node2D
         {
             Projectile projectile = (Projectile)Projectile.Instantiate();
             projectile.MovingDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized().Rotated(rotationAmount);
+            projectile.Rotate(projectile.MovingDirection.Angle());
             projectile.StartingPosition = GetNode<Marker2D>("ProjectileLaunchPoint").GlobalPosition;
             ApplyModifiersToProjectile(projectile);
             GetTree().Root.AddChild(projectile);
