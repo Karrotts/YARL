@@ -155,4 +155,4 @@ layer_0/tile_data = PackedInt32Array(-1572905, 0, 0, -1507369, 65536, 0, -144183
 [node name="Harry" parent="." instance=ExtResource("2_nqq1r")]
 
 [node name="PracticeTarget" parent="." instance=ExtResource("3_6s84g")]
-position = Vector2(180, -16)
+position = Vector2(158, -32)

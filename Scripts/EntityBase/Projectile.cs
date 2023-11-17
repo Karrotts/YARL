@@ -19,7 +19,13 @@ public partial class Projectile : Area2D
     public bool IsBoomerang { get; set; }
 
     [Export(PropertyHint.Range, "0,10000")]
-    public int Damage { get; set; }
+    public int MinDamage { get; set; }
+
+    [Export(PropertyHint.Range, "0,10000")]
+    public int MaxDamage { get; set; }
+
+    [Export(PropertyHint.Range, "0,10000")]
+    public float DamageModifier { get; set; }
 
     [Export]
     public Vector2 MovingDirection { get; set; }
@@ -67,7 +73,7 @@ public partial class Projectile : Area2D
     {
         if (node.GetGroups().Contains("Enemy"))
         {
-            (node as Enemy).HealthComponent.DealDamage(Damage);
+            (node as Enemy).HealthComponent.DealDamage((int)(GD.RandRange(MinDamage, MaxDamage) * DamageModifier));
             QueueFree();
         }
     }

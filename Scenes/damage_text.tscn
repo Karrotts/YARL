@@ -1,0 +1,183 @@
+[gd_scene load_steps=15 format=3 uid="uid://cd3l0fsx7eq5g"]
+
+[ext_resource type="Texture2D" uid="uid://by4b4rnvabxvj" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0180.png" id="1_m7k05"]
+[ext_resource type="Script" path="res://Scripts/DamageText.cs" id="1_rsaq3"]
+[ext_resource type="Texture2D" uid="uid://dtav2q4vxdno8" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0181.png" id="2_w877u"]
+[ext_resource type="Texture2D" uid="uid://c3df6scsyd77s" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0182.png" id="3_7qwar"]
+[ext_resource type="Texture2D" uid="uid://00bgag8wkvs2" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0183.png" id="4_1t1lo"]
+[ext_resource type="Texture2D" uid="uid://dqg6syg6sgg62" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0184.png" id="5_pq4gj"]
+[ext_resource type="Texture2D" uid="uid://utv5bwirnqlb" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0185.png" id="6_4y7tx"]
+[ext_resource type="Texture2D" uid="uid://crw5k6chj8be4" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0186.png" id="7_cx42y"]
+[ext_resource type="Texture2D" uid="uid://ddq2xuevf1v4h" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0187.png" id="8_yqrqe"]
+[ext_resource type="Texture2D" uid="uid://dvf2x41x43ab0" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0188.png" id="9_qpy5j"]
+[ext_resource type="Texture2D" uid="uid://ybjb4nj636ar" path="res://Art/KennyAssets/Tiny/Battle/Tiles/tile_0189.png" id="10_jponh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_stmbj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m7k05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w877u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7qwar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1t1lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pq4gj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4y7tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cx42y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yqrqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qpy5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jponh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_8xgwh"]
+resource_name = "bounce"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Digits/FirstDigitSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(10, 0), Vector2(10, -6), Vector2(10, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Digits/SecondDigitSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, -6), Vector2(1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Digits/ThirdDigitSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, 0), Vector2(-8, -6), Vector2(-8, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Digits/FourthDigitSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-17, 0), Vector2(-17, -6), Vector2(-17, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Digits:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Digits:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v50fi"]
+_data = {
+"bounce": SubResource("Animation_8xgwh")
+}
+
+[node name="DamageText" type="Node2D" node_paths=PackedStringArray("FirstDigit", "SecondDigit", "ThirdDigit", "FourthDigit")]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_rsaq3")
+FirstDigit = NodePath("Digits/FirstDigitSprite")
+SecondDigit = NodePath("Digits/SecondDigitSprite")
+ThirdDigit = NodePath("Digits/ThirdDigitSprite")
+FourthDigit = NodePath("Digits/FourthDigitSprite")
+Number = 123
+
+[node name="Digits" type="Node2D" parent="."]
+
+[node name="FirstDigitSprite" type="AnimatedSprite2D" parent="Digits"]
+texture_filter = 1
+position = Vector2(10, 0)
+sprite_frames = SubResource("SpriteFrames_stmbj")
+frame = 1
+
+[node name="SecondDigitSprite" type="AnimatedSprite2D" parent="Digits"]
+texture_filter = 1
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_stmbj")
+frame = 2
+
+[node name="ThirdDigitSprite" type="AnimatedSprite2D" parent="Digits"]
+texture_filter = 1
+position = Vector2(-8, 0)
+sprite_frames = SubResource("SpriteFrames_stmbj")
+frame = 3
+
+[node name="FourthDigitSprite" type="AnimatedSprite2D" parent="Digits"]
+texture_filter = 1
+position = Vector2(-17, 0)
+sprite_frames = SubResource("SpriteFrames_stmbj")
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "bounce"
+libraries = {
+"": SubResource("AnimationLibrary_v50fi")
+}

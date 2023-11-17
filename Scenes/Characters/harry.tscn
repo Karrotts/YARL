@@ -70,6 +70,7 @@ Projectile = ExtResource("4_oo0q5")
 ProjectileRotationAmount = 0.314
 ProjectileCooldown = 0.4
 RotateTowardsMouse = true
+ProjectileDamageModifier = 1.25
 ProjectileBoomerangModifier = true
 
 [node name="CharacterCamera" parent="." index="2"]

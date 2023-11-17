@@ -6,15 +6,15 @@ public partial class HealthComponent : Node
     public delegate void HealthZeroEventHandler();
 
     [Signal]
-    public delegate void OnDamageTakenEventHandler();
+    public delegate void OnDamageTakenEventHandler(int damage);
 
     [Signal]
     public delegate void OnHealthGainEventHandler();
 
-    [Export(PropertyHint.Range, "0,100")]
+    [Export(PropertyHint.Range, "0,10000")]
     public int MaxHealth { get; set; } = 10;
 
-    [Export(PropertyHint.Range, "0,100")]
+    [Export(PropertyHint.Range, "0,10000")]
     public int StartHealth { get; set; } = 10;
 
     [Export]
@@ -50,7 +50,6 @@ public partial class HealthComponent : Node
             {
                 _currentHealth = 0;
                 EmitSignal(SignalName.HealthZero);
-                EmitSignal(SignalName.OnDamageTaken);
             }
             else if (value > _currentHealth)
             {
@@ -61,7 +60,6 @@ public partial class HealthComponent : Node
             else if (value < _currentHealth)
             {
                 _currentHealth = value;
-                EmitSignal(SignalName.OnDamageTaken);
 
                 // set entity to be invulnerable and start the timer
                 _invulnerabilityTimer.Start();
@@ -94,6 +92,10 @@ public partial class HealthComponent : Node
     public int DealDamage(int amount)
     {
         CurrentHealth -= amount;
+        if (amount > 0)
+        {
+            EmitSignal(SignalName.OnDamageTaken, amount);
+        }
         return CurrentHealth;
     }
 }

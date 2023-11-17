@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://2ogvo65ymrv7"]
+[gd_scene load_steps=5 format=3 uid="uid://2ogvo65ymrv7"]
 
 [ext_resource type="PackedScene" uid="uid://du01mxuiidu5r" path="res://Scenes/EntityBase/enemy_base.tscn" id="1_fjgrk"]
 [ext_resource type="Script" path="res://Scripts/Enemies/PracticeTarget.cs" id="2_dd0l7"]
+[ext_resource type="PackedScene" uid="uid://cd3l0fsx7eq5g" path="res://Scenes/damage_text.tscn" id="3_uqk02"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hgfoi"]
 radius = 13.0
 
 [node name="PracticeTarget" node_paths=PackedStringArray("HealthComponent", "MovementComponent") instance=ExtResource("1_fjgrk")]
 script = ExtResource("2_dd0l7")
+DamageNumber = ExtResource("3_uqk02")
 HealthComponent = NodePath("Components/HealthComponent")
 MovementComponent = NodePath("Components/MovementComponent")
 
@@ -18,3 +20,5 @@ StartHealth = 100
 [node name="TargetCollision" type="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_hgfoi")
+
+[node name="Marker2D" type="Marker2D" parent="." index="3"]

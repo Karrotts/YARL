@@ -112,7 +112,7 @@ public partial class ProjectileLauncherComponent : Node2D
         projectile.Speed *= ProjectileSpeedModifier;
         projectile.Size *= ProjectileSizeModifier;
         projectile.Drag *= ProjectileDragModifier;
-        projectile.Damage = projectile.Damage + (int)(projectile.Damage * ProjectileDamageModifier);
+        projectile.DamageModifier = ProjectileDamageModifier;
     }
 
     private void HandleRotation()
