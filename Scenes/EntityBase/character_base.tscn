@@ -29,6 +29,3 @@ texture = ExtResource("3_y7nk2")
 [node name="HealthComponent" parent="Components" instance=ExtResource("2_xq86r")]
 
 [node name="MovementComponent" parent="Components" instance=ExtResource("3_br7va")]
-
-[node name="CharacterCamera" type="Camera2D" parent="."]
-position_smoothing_enabled = true

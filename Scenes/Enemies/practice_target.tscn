@@ -8,14 +8,16 @@
 radius = 13.0
 
 [node name="PracticeTarget" node_paths=PackedStringArray("HealthComponent", "MovementComponent") instance=ExtResource("1_fjgrk")]
+collision_layer = 2
+collision_mask = 11
 script = ExtResource("2_dd0l7")
 DamageNumber = ExtResource("3_uqk02")
 HealthComponent = NodePath("Components/HealthComponent")
 MovementComponent = NodePath("Components/MovementComponent")
 
 [node name="HealthComponent" parent="Components" index="0"]
-MaxHealth = 100
-StartHealth = 100
+MaxHealth = 1000
+StartHealth = 1000
 
 [node name="TargetCollision" type="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 1)

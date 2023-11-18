@@ -70,18 +70,14 @@ Projectile = ExtResource("4_oo0q5")
 ProjectileRotationAmount = 0.314
 ProjectileCooldown = 0.4
 RotateTowardsMouse = true
-ProjectileDamageModifier = 1.25
 ProjectileBoomerangModifier = true
 
-[node name="CharacterCamera" parent="." index="2"]
-zoom = Vector2(2, 2)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_xeebb")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 visible = false
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_3eoro")

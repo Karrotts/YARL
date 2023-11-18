@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxhcodtgwyh6"]
+
+[ext_resource type="PackedScene" uid="uid://du01mxuiidu5r" path="res://Scenes/EntityBase/enemy_base.tscn" id="1_mw2pu"]
+[ext_resource type="Texture2D" uid="uid://xfluj6ugiair" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0121.png" id="2_7ftbt"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Ghost.cs" id="2_gc52v"]
+[ext_resource type="PackedScene" uid="uid://cd3l0fsx7eq5g" path="res://Scenes/damage_text.tscn" id="3_ch8ov"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y315p"]
+radius = 12.0
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_bgs7j"]
+resource_name = "be_ghostly"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/EnemySprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.964706), Color(1, 1, 1, 0.611765), Color(1, 1, 1, 0.964706)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/EnemySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6, 2.4, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2.5), Vector2(2, 2), Vector2(2, 2.2), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/EnemySprite:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.3, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwacd"]
+_data = {
+"be_ghostly": SubResource("Animation_bgs7j")
+}
+
+[node name="GhostEnemy" node_paths=PackedStringArray("HealthComponent", "MovementComponent") instance=ExtResource("1_mw2pu")]
+script = ExtResource("2_gc52v")
+DamageNumber = ExtResource("3_ch8ov")
+HealthComponent = NodePath("Components/HealthComponent")
+MovementComponent = NodePath("Components/MovementComponent")
+
+[node name="Sprites" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.858824)
+
+[node name="EnemySprite" parent="Sprites" index="0"]
+modulate = Color(1, 1, 1, 0.950408)
+scale = Vector2(2, 2.03798)
+skew = 0.00353534
+texture = ExtResource("2_7ftbt")
+
+[node name="ShadowSprite" parent="Sprites" index="1"]
+visible = false
+
+[node name="HealthComponent" parent="Components" index="0"]
+MaxHealth = 15
+StartHealth = 15
+
+[node name="MovementComponent" parent="Components" index="1" node_paths=PackedStringArray("ControllableEntity")]
+ControllableEntity = NodePath("../..")
+StartingSpeed = 50.0
+
+[node name="GhostCollision" type="CollisionShape2D" parent="." index="2"]
+visible = false
+shape = SubResource("CapsuleShape2D_y315p")
+
+[node name="Marker2D" type="Marker2D" parent="." index="3"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+autoplay = "be_ghostly"
+libraries = {
+"": SubResource("AnimationLibrary_pwacd")
+}

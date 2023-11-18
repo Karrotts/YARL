@@ -15,7 +15,7 @@ public partial class MovementComponent : Node
 
     [Export]
     [ExportGroup("Entity")]
-    public Character ControllableEntity;
+    public CharacterBody2D ControllableEntity;
 
     [Export(PropertyHint.Range, "1,10000")]
     [ExportGroup("Stats")]
@@ -89,6 +89,16 @@ public partial class MovementComponent : Node
         Vector2 movement = movementVector * _currentSpeed;
         _isMoving = movement != Vector2.Zero;
         return movementVector * _currentSpeed;
+    }
+
+    /// <summary>
+    /// Moves the entity in a direction with a 
+    /// </summary>
+    /// <param name="movementVector"></param>
+    public void Move(Vector2 movementVector)
+    {
+        ControllableEntity.Velocity = ApplySpeed(movementVector);
+        ControllableEntity.MoveAndSlide();
     }
 
     /// <summary>
