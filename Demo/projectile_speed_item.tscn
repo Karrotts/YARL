@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccmvc5aixb2gu"]
+
+[ext_resource type="PackedScene" uid="uid://dkfrrcgcwb8rn" path="res://Scenes/EntityBase/item_base.tscn" id="1_v5c5r"]
+[ext_resource type="Script" path="res://Demo/ProjectileSpeedItem.cs" id="2_y3yyy"]
+[ext_resource type="Texture2D" uid="uid://dnhvlri07d0la" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0113.png" id="3_g7bw6"]
+
+[node name="ProjectileSpeedItem" instance=ExtResource("1_v5c5r")]
+script = ExtResource("2_y3yyy")
+
+[node name="ItemSprite" parent="." index="0"]
+texture = ExtResource("3_g7bw6")
+
+[node name="HighlightSprite" parent="." index="1"]
+modulate = Color(0.505882, 1, 0.713726, 0.380392)

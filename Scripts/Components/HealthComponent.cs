@@ -91,6 +91,7 @@ public partial class HealthComponent : Node
     /// <returns>Remaining health</returns>
     public int DealDamage(int amount)
     {
+        if (_currentHealth <= 0) return 0;
         CurrentHealth -= amount;
         if (amount > 0)
         {

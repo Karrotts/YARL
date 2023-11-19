@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpu4srhqh1pob"]
+
+[ext_resource type="PackedScene" uid="uid://dkfrrcgcwb8rn" path="res://Scenes/EntityBase/item_base.tscn" id="1_vkqi1"]
+[ext_resource type="Script" path="res://Demo/HealthMaxItem.cs" id="2_g2ujr"]
+
+[node name="HealthMaxItem" instance=ExtResource("1_vkqi1")]
+script = ExtResource("2_g2ujr")
+
+[node name="HighlightSprite" parent="." index="1"]
+modulate = Color(0.662745, 1, 0.686275, 0.380392)

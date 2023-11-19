@@ -17,6 +17,8 @@ public partial class HarryCharacter : Character
     {
         base._Process(delta);
         HandlePlayerAnimation();
+
+        HealthComponent.HealthZero += OnHealthZero;
     }
 
     public void HandlePlayerAnimation()
@@ -36,5 +38,18 @@ public partial class HarryCharacter : Character
                 ProjectileLauncherComponent.Position.X * -1,
                 ProjectileLauncherComponent.Position.Y
             );
+    }
+
+    public void OnHealthZero()
+    {
+        GetNode<Sprite2D>("Sprites/DeathSprite").Visible = true;
+        GetNode<Sprite2D>("Sprites/CharacterSprite").Visible= false;
+
+        // disable projectiles
+        ProjectileLauncherComponent.ProjectileToggle = false;
+        ProjectileLauncherComponent.Visible = false;
+
+        // disable character movement
+        MovementComponent.ForceStopMovement = true;
     }
 }

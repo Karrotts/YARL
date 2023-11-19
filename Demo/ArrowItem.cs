@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ArrowItem : Area2D, IItem
+public partial class ArrowItem : Item
 {
     public Character EffectedCharacter;
     public override void _Ready()
@@ -9,7 +9,7 @@ public partial class ArrowItem : Area2D, IItem
         BodyEntered += OnCharacterEnterBody;
     }
 
-    public void ApplyItem()
+    public override void ApplyItem()
     {
         EffectedCharacter.GetNode<ProjectileLauncherComponent>("Components/ProjectileLauncherComponent").ProjectileAmount += 1;
     }

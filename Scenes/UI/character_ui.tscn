@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr7vsfq775lmo"]
+
+[ext_resource type="FontFile" uid="uid://cgxfsq5cc33jo" path="res://Art/PublicPixel-z84yD.ttf" id="1_n78dd"]
+[ext_resource type="Script" path="res://Scenes/UI/CharacterUI.cs" id="1_sj12r"]
+
+[node name="CharacterUI" type="CanvasLayer"]
+script = ExtResource("1_sj12r")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = 28.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("1_n78dd")
+theme_override_font_sizes/font_size = 25
+text = "Health: 0/50"
+
+[node name="WaveLabel" type="Label" parent="."]
+offset_left = 31.0
+offset_top = 63.0
+offset_right = 631.0
+offset_bottom = 116.0
+theme_override_fonts/font = ExtResource("1_n78dd")
+theme_override_font_sizes/font_size = 25
+text = "Wave: 1"

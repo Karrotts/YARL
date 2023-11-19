@@ -8,6 +8,10 @@ public partial class Ghost : Enemy
 
     public Character Target { get; set; }
 
+    private AnimationPlayer _animationPlayer;
+    private bool _ghostIsAttacking = false;
+    private bool _playerInAttackRange = false;
+
     public override void _Ready()
     {
         base._Ready();
@@ -18,16 +22,23 @@ public partial class Ghost : Enemy
         }
         HealthComponent.HealthZero += OnHealthZero;
         HealthComponent.OnDamageTaken += OnDamageTaken;
+        GetNode<Area2D>("AttackRange").BodyEntered += OnCharacterEnterAttackRange;
+        GetNode<Area2D>("AttackRange").BodyExited += OnCharacterExitAttackRange;
+        _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     public override void _Process(double delta)
     {
         HandleSpriteFlip();
         HandleGhostMovement(delta);
+
+        if (!_ghostIsAttacking && !HealthComponent.IsInvulnerable) _animationPlayer.Play("be_ghostly");
+        if (_ghostIsAttacking) _animationPlayer?.Play("attack");
     }
 
     public void OnHealthZero()
     {
+        GetNode<EnemyDrops>("EnemyDrops").DropLoot();
         QueueFree();
     }
 
@@ -37,6 +48,15 @@ public partial class Ghost : Enemy
         damageText.Number = amount;
         damageText.Position = GetNode<Marker2D>("Marker2D").GlobalPosition;
         GetTree().Root.AddChild(damageText);
+        _animationPlayer.Play("hit");
+    }
+
+    public void HitPlayer()
+    {
+        if (_playerInAttackRange)
+        {
+            Target.HealthComponent.DealDamage(3);
+        }
     }
 
     private void HandleSpriteFlip()
@@ -47,5 +67,23 @@ public partial class Ghost : Enemy
     private void HandleGhostMovement(double delta)
     {
         MovementComponent.Move(GlobalPosition.DirectionTo(Target.GlobalPosition));
+    }
+
+    private void OnCharacterEnterAttackRange(Node2D node)
+    {
+        if (node.GetGroups().Contains("Character"))
+        {
+            _ghostIsAttacking = true;
+            _playerInAttackRange = true;
+        }
+    }
+
+    private void OnCharacterExitAttackRange(Node2D node)
+    {
+        if (node.GetGroups().Contains("Character"))
+        {
+            _ghostIsAttacking = false;
+            _playerInAttackRange = false;
+        }
     }
 }

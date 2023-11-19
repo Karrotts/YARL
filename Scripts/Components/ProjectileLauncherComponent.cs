@@ -75,6 +75,10 @@ public partial class ProjectileLauncherComponent : Node2D
 
     public override void _Process(double delta)
     {
+        if (_projectileTimer.WaitTime != ProjectileCooldown)
+        {
+            _projectileTimer.WaitTime = ProjectileCooldown;
+        }
         HandleAction();
         HandleRotation();
     }
@@ -112,7 +116,7 @@ public partial class ProjectileLauncherComponent : Node2D
         projectile.Speed *= ProjectileSpeedModifier;
         projectile.Size *= ProjectileSizeModifier;
         projectile.Drag *= ProjectileDragModifier;
-        projectile.DamageModifier = ProjectileDamageModifier;
+        projectile.DamageModifier = ProjectileDamageModifier / ProjectileAmount;
     }
 
     private void HandleRotation()

@@ -1,13 +1,88 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxhcodtgwyh6"]
+[gd_scene load_steps=21 format=3 uid="uid://dxhcodtgwyh6"]
 
 [ext_resource type="PackedScene" uid="uid://du01mxuiidu5r" path="res://Scenes/EntityBase/enemy_base.tscn" id="1_mw2pu"]
 [ext_resource type="Texture2D" uid="uid://xfluj6ugiair" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0121.png" id="2_7ftbt"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Ghost.cs" id="2_gc52v"]
+[ext_resource type="Shader" path="res://Scenes/Enemies/hit_shader.gdshader" id="2_oeq42"]
 [ext_resource type="PackedScene" uid="uid://cd3l0fsx7eq5g" path="res://Scenes/damage_text.tscn" id="3_ch8ov"]
+[ext_resource type="Script" path="res://Scripts/Enemies/EnemyDrops.cs" id="6_rfq38"]
+[ext_resource type="PackedScene" uid="uid://xuagrtfftc40" path="res://Demo/arrow_item.tscn" id="7_gqpit"]
+[ext_resource type="PackedScene" uid="uid://cpu4srhqh1pob" path="res://Demo/health_max_item.tscn" id="8_hicac"]
+[ext_resource type="PackedScene" uid="uid://bmf4koilr2p8m" path="res://Demo/damage_boost_item.tscn" id="9_akh7w"]
+[ext_resource type="PackedScene" uid="uid://dmomipmnu775e" path="res://Demo/basic_heal_item.tscn" id="10_501kt"]
+[ext_resource type="PackedScene" uid="uid://ccmvc5aixb2gu" path="res://Demo/projectile_speed_item.tscn" id="10_htxyd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ll5dj"]
+shader = ExtResource("2_oeq42")
+shader_parameter/amount = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4oyr5"]
+resource_local_to_scene = true
+shader = ExtResource("2_oeq42")
+shader_parameter/amount = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y315p"]
 radius = 12.0
 height = 32.0
+
+[sub_resource type="Animation" id="Animation_6bccc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/EnemySprite:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8esoj"]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/EnemySprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.964706), Color(1, 0.486275, 0.431373, 0.964706), Color(1, 1, 1, 0.964706)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/EnemySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 6.72717, 1, 6.72717),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(2, 4), Vector2(2, 2)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HitPlayer"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bgs7j"]
 resource_name = "be_ghostly"
@@ -50,12 +125,36 @@ tracks/2/keys = {
 "values": [0.0, 0.0872665, -0.0872665, 0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwacd"]
-_data = {
-"be_ghostly": SubResource("Animation_bgs7j")
+[sub_resource type="Animation" id="Animation_oovds"]
+resource_name = "hit"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/EnemySprite:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25),
+"transitions": PackedFloat32Array(0.594604, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwacd"]
+_data = {
+"RESET": SubResource("Animation_6bccc"),
+"attack": SubResource("Animation_8esoj"),
+"be_ghostly": SubResource("Animation_bgs7j"),
+"hit": SubResource("Animation_oovds")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e851n"]
+radius = 36.0139
+
 [node name="GhostEnemy" node_paths=PackedStringArray("HealthComponent", "MovementComponent") instance=ExtResource("1_mw2pu")]
+material = SubResource("ShaderMaterial_ll5dj")
 script = ExtResource("2_gc52v")
 DamageNumber = ExtResource("3_ch8ov")
 HealthComponent = NodePath("Components/HealthComponent")
@@ -65,21 +164,20 @@ MovementComponent = NodePath("Components/MovementComponent")
 modulate = Color(1, 1, 1, 0.858824)
 
 [node name="EnemySprite" parent="Sprites" index="0"]
-modulate = Color(1, 1, 1, 0.950408)
-scale = Vector2(2, 2.03798)
-skew = 0.00353534
+modulate = Color(1, 1, 1, 0.964706)
+material = SubResource("ShaderMaterial_4oyr5")
 texture = ExtResource("2_7ftbt")
 
 [node name="ShadowSprite" parent="Sprites" index="1"]
 visible = false
 
 [node name="HealthComponent" parent="Components" index="0"]
-MaxHealth = 15
+MaxHealth = 500
 StartHealth = 15
 
 [node name="MovementComponent" parent="Components" index="1" node_paths=PackedStringArray("ControllableEntity")]
 ControllableEntity = NodePath("../..")
-StartingSpeed = 50.0
+StartingSpeed = 65.0
 
 [node name="GhostCollision" type="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -92,3 +190,17 @@ autoplay = "be_ghostly"
 libraries = {
 "": SubResource("AnimationLibrary_pwacd")
 }
+
+[node name="AttackRange" type="Area2D" parent="." index="5"]
+collision_layer = 2
+
+[node name="AttackRangeCollision" type="CollisionShape2D" parent="AttackRange" index="0"]
+visible = false
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_e851n")
+
+[node name="EnemyDrops" type="Node2D" parent="." index="6"]
+script = ExtResource("6_rfq38")
+LegendaryDrops = Array[PackedScene]([ExtResource("7_gqpit")])
+RareDrops = Array[PackedScene]([ExtResource("8_hicac"), ExtResource("9_akh7w"), ExtResource("10_htxyd")])
+CommonDrops = Array[PackedScene]([ExtResource("10_501kt")])
