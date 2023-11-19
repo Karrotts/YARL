@@ -19,7 +19,7 @@ public partial class DamageBoostItem : Item
         if (character is HarryCharacter)
         {
             EffectedCharacter = (HarryCharacter)character;
-            EffectedCharacter.CharacterInventory.AddItem(this);
+            ApplyItem();
             QueueFree();
         }
     }

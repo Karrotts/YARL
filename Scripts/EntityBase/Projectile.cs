@@ -36,6 +36,9 @@ public partial class Projectile : Area2D
     [Export]
     public float Drag { get; set; }
 
+    [Export]
+    public int PierceCount { get; set; }
+
     private float _currentSpeed;
 
     public override void _Ready()
@@ -66,7 +69,7 @@ public partial class Projectile : Area2D
         movement.X = Mathf.Cos(Rotation);
         movement.Y = Mathf.Sin(Rotation);
         Position += movement * _currentSpeed * (float)delta;
-        _currentSpeed -= Drag;
+        _currentSpeed -= Drag * (float)delta;
     }
 
     public virtual void OnBodyEntered(Node2D node)
@@ -74,7 +77,13 @@ public partial class Projectile : Area2D
         if (node.GetGroups().Contains("Enemy"))
         {
             (node as Enemy).HealthComponent.DealDamage((int)(GD.RandRange(MinDamage, MaxDamage) * DamageModifier));
-            QueueFree();
+            if (PierceCount <= 0)
+            {
+                QueueFree();
+            } else
+            {
+                PierceCount--;
+            }
         }
     }
 }

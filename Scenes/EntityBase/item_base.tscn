@@ -27,7 +27,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l05mf"]
-radius = 8.0
+radius = 19.0263
 
 [node name="ItemBase" type="Area2D" groups=["Entity", "Item"]]
 script = ExtResource("1_r1i3g")
@@ -54,6 +54,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_l05mf")

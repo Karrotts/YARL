@@ -44,6 +44,9 @@ public partial class ProjectileLauncherComponent : Node2D
     [ExportGroup("Projectile Modifiers")]
     public bool ProjectileBoomerangModifier { get; set; } = false;
 
+    [Export]
+    public int ProjectilePierceModifier { get; set; } = 0;
+
 
     public bool ProjectileOnCooldown
     {
@@ -117,6 +120,7 @@ public partial class ProjectileLauncherComponent : Node2D
         projectile.Size *= ProjectileSizeModifier;
         projectile.Drag *= ProjectileDragModifier;
         projectile.DamageModifier = ProjectileDamageModifier / ProjectileAmount;
+        projectile.PierceCount = ProjectilePierceModifier;
     }
 
     private void HandleRotation()

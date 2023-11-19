@@ -5,21 +5,21 @@
 
 [sub_resource type="Curve2D" id="Curve2D_tcdkq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -361, -220, 0, 0, 0, 0, 368, -225, 0, 0, 0, 0, 382, 204, 0, 0, 0, 0, -352, 204, 0, 0, 0, 0, -361, -220)
+"points": PackedVector2Array(0, 0, 0, 0, -361, -220, 0, 0, 0, 0, 368, -225, 0, 0, 0, 0, 382, 204, 0, 0, 0, 0, 10.1425, 211.265, 0, 0, 0, 0, -352, 204, 0, 0, 0, 0, -361, -220)
 }
-point_count = 5
+point_count = 6
 
 [node name="DemoGame" type="Node2D"]
 script = ExtResource("1_mbjjr")
 Enemies = Array[PackedScene]([ExtResource("2_c16ek")])
 
 [node name="CharacterCamera" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 
 [node name="SpawnPath" type="Path2D" parent="CharacterCamera"]
-position = Vector2(-10.5828, 8.92307)
-scale = Vector2(1.15074, 1.23077)
+position = Vector2(-23.1831, 14.1184)
+scale = Vector2(1.39838, 1.40053)
 curve = SubResource("Curve2D_tcdkq")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CharacterCamera/SpawnPath"]

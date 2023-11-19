@@ -38,7 +38,7 @@ texture = ExtResource("1_3lhyw")
 region_rect = Rect2(-2, -2, 20, 20)
 
 [node name="HighlightSprite" type="Sprite2D" parent="."]
-modulate = Color(0.678431, 0.419608, 0.701961, 0.737255)
+modulate = Color(1, 0.376471, 1, 0.380392)
 z_index = -1
 texture_filter = 1
 position = Vector2(0, 6)

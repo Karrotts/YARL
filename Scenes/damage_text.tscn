@@ -166,7 +166,7 @@ frame = 2
 
 [node name="ThirdDigitSprite" type="AnimatedSprite2D" parent="Digits"]
 texture_filter = 1
-position = Vector2(-8, 0)
+position = Vector2(-8, -6)
 sprite_frames = SubResource("SpriteFrames_stmbj")
 frame = 3
 

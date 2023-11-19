@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://clfav7eeqebfn"]
+
+[ext_resource type="PackedScene" uid="uid://dkfrrcgcwb8rn" path="res://Scenes/EntityBase/item_base.tscn" id="1_kgr1c"]
+[ext_resource type="Texture2D" uid="uid://xmsdfnnw788c" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0131.png" id="2_qkjsr"]
+[ext_resource type="Script" path="res://Demo/PierceModifierItem.cs" id="2_v0ynb"]
+
+[node name="PierceModifierItem" instance=ExtResource("1_kgr1c")]
+script = ExtResource("2_v0ynb")
+
+[node name="ItemSprite" parent="." index="0"]
+texture = ExtResource("2_qkjsr")
+
+[node name="HighlightSprite" parent="." index="1"]
+modulate = Color(1, 0.376471, 1, 0.380392)
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false

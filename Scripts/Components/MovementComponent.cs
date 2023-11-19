@@ -101,6 +101,12 @@ public partial class MovementComponent : Node
         ControllableEntity.MoveAndSlide();
     }
 
+    public void ApplyCounterForce(Vector2 direction, float forceAmount)
+    {
+        ControllableEntity.Velocity = direction * forceAmount;
+        ControllableEntity.MoveAndSlide();
+    }
+
     /// <summary>
     /// Handles the player movement if enabled
     /// </summary>

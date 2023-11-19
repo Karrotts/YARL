@@ -11,7 +11,8 @@ public partial class DemoGame : Node2D
     private bool _canSpawn = true;
     private Timer _spawnTimer;
     private Timer _waveTimer;
-    private float _healthModifier = 0.2f;
+    private float _healthModifier = 0.1f;
+    private int _spawnAmount = 1;
     public override void _Ready()
     {
         base._Ready();
@@ -26,7 +27,10 @@ public partial class DemoGame : Node2D
         base._Process(delta);
         if (_canSpawn)
         {
-            SpawnEnemy();
+            for (int i = 0; i < _spawnAmount; i++)
+            {
+                SpawnEnemy();
+            }
             _spawnTimer.Start();
             _canSpawn = false;
         }
@@ -44,8 +48,9 @@ public partial class DemoGame : Node2D
 
     public void SetUpNextWave()
     {
-        // enemies spawn 15% faster
-        _spawnTimer.WaitTime *= 0.85f;
+        // enemies spawn 15% faster and increase amount every other wave
+        if (Wave % 2 == 0) _spawnAmount++;
+        _spawnTimer.WaitTime *= 0.9f;
         Wave++;
     }
 }

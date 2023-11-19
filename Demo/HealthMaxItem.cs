@@ -11,8 +11,8 @@ public partial class HealthMaxItem : Item
 
     public override void ApplyItem()
     {
-        EffectedCharacter.HealthComponent.MaxHealth += 5;
-        EffectedCharacter.HealthComponent.CurrentHealth += 5;
+        EffectedCharacter.HealthComponent.MaxHealth += 1;
+        EffectedCharacter.HealthComponent.CurrentHealth += 1;
     }
 
     public void OnCharacterEnterBody(Node2D character)
@@ -20,7 +20,7 @@ public partial class HealthMaxItem : Item
         if (character is Character)
         {
             EffectedCharacter = (Character)character;
-            EffectedCharacter.CharacterInventory.AddItem(this);
+            ApplyItem();
             QueueFree();
         }
     }

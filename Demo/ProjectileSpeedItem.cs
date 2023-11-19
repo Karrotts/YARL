@@ -11,7 +11,7 @@ public partial class ProjectileSpeedItem : Item
 
     public override void ApplyItem()
     {
-        EffectedCharacter.ProjectileLauncherComponent.ProjectileCooldown *= 0.85f;
+        EffectedCharacter.ProjectileLauncherComponent.ProjectileCooldown *= 0.95f;
     }
 
     public void OnCharacterEnterBody(Node2D character)
@@ -19,7 +19,7 @@ public partial class ProjectileSpeedItem : Item
         if (character is HarryCharacter)
         {
             EffectedCharacter = (HarryCharacter)character;
-            EffectedCharacter.CharacterInventory.AddItem(this);
+            ApplyItem();
             QueueFree();
         }
     }

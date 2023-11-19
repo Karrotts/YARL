@@ -19,7 +19,7 @@ public partial class BasicHealItem : Item
         if (character is Character)
         {
             EffectedCharacter = (Character)character;
-            EffectedCharacter.CharacterInventory.AddItem(this);
+            ApplyItem();
             QueueFree();
         }
     }

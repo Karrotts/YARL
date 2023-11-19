@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalControls="*res://Scripts/GlobalControls.cs"
-CharacterInventory="*res://Scripts/CharacterInventory.cs"
 
 [display]
 
