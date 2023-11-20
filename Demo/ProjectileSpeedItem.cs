@@ -6,6 +6,7 @@ public partial class ProjectileSpeedItem : Item
     public HarryCharacter EffectedCharacter;
     public override void _Ready()
     {
+        base._Ready();
         BodyEntered += OnCharacterEnterBody;
     }
 
