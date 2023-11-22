@@ -7,6 +7,7 @@ public partial class Ghost : Enemy
     public PackedScene DamageNumber { get; set; }
 
     public Character Target { get; set; }
+    public PathFollow2D Path { get; set; }
 
     private AnimationPlayer _animationPlayer;
     private bool _ghostIsAttacking = false;
@@ -24,6 +25,7 @@ public partial class Ghost : Enemy
         HealthComponent.OnDamageTaken += OnDamageTaken;
         GetNode<Area2D>("AttackRange").BodyEntered += OnCharacterEnterAttackRange;
         GetNode<Area2D>("AttackRange").BodyExited += OnCharacterExitAttackRange;
+        GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").ScreenExited += RespawnEnemy;
         _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
@@ -85,5 +87,11 @@ public partial class Ghost : Enemy
             _ghostIsAttacking = false;
             _playerInAttackRange = false;
         }
+    }
+
+    private void RespawnEnemy()
+    {
+        Path.ProgressRatio = GD.Randf();
+        GlobalPosition = Path.GlobalPosition;
     }
 }

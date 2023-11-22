@@ -42,7 +42,7 @@ public partial class HarryCharacter : Character
 
     public void OnHealthZero()
     {
-        GetNode<Sprite2D>("Sprites/DeathSprite").Visible = true;
+        //GetNode<Sprite2D>("Sprites/DeathSprite").Visible = true;
         GetNode<Sprite2D>("Sprites/CharacterSprite").Visible= false;
 
         // disable projectiles

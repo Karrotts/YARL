@@ -42,7 +42,11 @@ public partial class DemoGame : Node2D
         PathFollow2D path = GetNode<PathFollow2D>("CharacterCamera/SpawnPath/PathFollow2D");
         path.ProgressRatio = GD.Randf();
         enemy.Position = path.GlobalPosition;
-        GetTree().Root.AddChild(enemy);
+        if (enemy is Ghost)
+        {
+            (enemy as Ghost).Path = path;
+        }
+        GetTree().Root.GetNode<Node2D>("DemoLevel").AddChild(enemy);
         enemy.HealthComponent.CurrentHealth += (int)(enemy.HealthComponent.CurrentHealth * (_healthModifier * (Wave - 1)));
     }
 

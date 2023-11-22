@@ -203,3 +203,7 @@ script = ExtResource("6_rfq38")
 LegendaryDrops = Array[PackedScene]([ExtResource("7_gqpit"), ExtResource("8_sbu1w")])
 RareDrops = Array[PackedScene]([ExtResource("8_hicac"), ExtResource("9_akh7w"), ExtResource("10_htxyd")])
 CommonDrops = Array[PackedScene]([ExtResource("10_501kt")])
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="7"]
+position = Vector2(-0.499998, 1.5)
+scale = Vector2(2.65, 2.75)

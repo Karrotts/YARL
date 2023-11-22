@@ -49,6 +49,6 @@ public partial class EnemyDrops : Node2D
         int item = GD.RandRange(0, lootTable.Length - 1);
         Item spawnItem = (Item)lootTable[item].Instantiate();
         spawnItem.GlobalPosition = GlobalPosition;
-        GetTree().Root.CallDeferred("add_child", spawnItem);
+        GetTree().Root.GetNode<Node2D>("DemoLevel").CallDeferred("add_child", spawnItem);
     }
 }
