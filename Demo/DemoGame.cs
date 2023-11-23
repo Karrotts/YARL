@@ -53,8 +53,8 @@ public partial class DemoGame : Node2D
     public void SetUpNextWave()
     {
         // enemies spawn 15% faster and increase amount every other wave
-        if (Wave % 2 == 0) _spawnAmount++;
-        _spawnTimer.WaitTime *= 0.9f;
+        if (Wave % 4 == 0) _spawnAmount++;
+        _spawnTimer.WaitTime *= 0.95f;
         Wave++;
     }
 }

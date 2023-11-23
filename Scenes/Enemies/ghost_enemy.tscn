@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxhcodtgwyh6"]
+[gd_scene load_steps=23 format=3 uid="uid://dxhcodtgwyh6"]
 
 [ext_resource type="PackedScene" uid="uid://du01mxuiidu5r" path="res://Scenes/EntityBase/enemy_base.tscn" id="1_mw2pu"]
 [ext_resource type="Texture2D" uid="uid://xfluj6ugiair" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0121.png" id="2_7ftbt"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bmf4koilr2p8m" path="res://Demo/damage_boost_item.tscn" id="9_akh7w"]
 [ext_resource type="PackedScene" uid="uid://dmomipmnu775e" path="res://Demo/basic_heal_item.tscn" id="10_501kt"]
 [ext_resource type="PackedScene" uid="uid://ccmvc5aixb2gu" path="res://Demo/projectile_speed_item.tscn" id="10_htxyd"]
+[ext_resource type="PackedScene" uid="uid://chqypb3sakigt" path="res://Demo/bomb_item.tscn" id="13_n7mh2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ll5dj"]
 shader = ExtResource("2_oeq42")
@@ -202,7 +203,9 @@ shape = SubResource("CircleShape2D_e851n")
 script = ExtResource("6_rfq38")
 LegendaryDrops = Array[PackedScene]([ExtResource("7_gqpit"), ExtResource("8_sbu1w")])
 RareDrops = Array[PackedScene]([ExtResource("8_hicac"), ExtResource("9_akh7w"), ExtResource("10_htxyd")])
-CommonDrops = Array[PackedScene]([ExtResource("10_501kt")])
+CommonDrops = Array[PackedScene]([ExtResource("10_501kt"), ExtResource("13_n7mh2")])
+LegendaryDropChance = 0.05
+CommonDropChance = 0.3
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="7"]
 position = Vector2(-0.499998, 1.5)

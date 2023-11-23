@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://chqypb3sakigt"]
+
+[ext_resource type="PackedScene" uid="uid://dkfrrcgcwb8rn" path="res://Scenes/EntityBase/item_base.tscn" id="1_5tjrk"]
+[ext_resource type="Texture2D" uid="uid://dunv0efx0lhlx" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0105.png" id="2_nfjra"]
+
+[node name="BombItem" instance=ExtResource("1_5tjrk")]
+
+[node name="ItemSprite" parent="." index="0"]
+texture = ExtResource("2_nfjra")
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
