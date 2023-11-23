@@ -6,6 +6,7 @@ public partial class HealthMaxItem : Item
     public Character EffectedCharacter;
     public override void _Ready()
     {
+        base._Ready();
         BodyEntered += OnCharacterEnterBody;
     }
 
