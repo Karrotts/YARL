@@ -12,7 +12,11 @@ public partial class PierceModifierItem : Item
 
     public override void ApplyItem()
     {
-        EffectedCharacter.GetNode<ProjectileLauncherComponent>("Components/ProjectileLauncherComponent").ProjectilePierceModifier += 1;
+        ProjectileLauncherComponent projectileLauncherComponent = EffectedCharacter.GetNode<ProjectileLauncherComponent>("Components/ProjectileLauncherComponent");
+        if (projectileLauncherComponent.ProjectilePierceModifier < 5) {
+            projectileLauncherComponent.ProjectilePierceModifier += 1;
+        }
+
     }
 
     public void OnCharacterEnterBody(Node2D character)

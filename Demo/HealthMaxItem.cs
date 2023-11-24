@@ -12,7 +12,10 @@ public partial class HealthMaxItem : Item
 
     public override void ApplyItem()
     {
-        EffectedCharacter.HealthComponent.MaxHealth += 1;
+        if (EffectedCharacter.HealthComponent.MaxHealth < 30)
+        {
+            EffectedCharacter.HealthComponent.MaxHealth += 1;
+        }
         EffectedCharacter.HealthComponent.CurrentHealth += 1;
     }
 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ProjectileSpeedItem : Item
+public partial class BombItem : Item
 {
     public HarryCharacter EffectedCharacter;
     public override void _Ready()
@@ -12,10 +12,7 @@ public partial class ProjectileSpeedItem : Item
 
     public override void ApplyItem()
     {
-        if (EffectedCharacter.ProjectileLauncherComponent.ProjectileCooldown >= 0.1f)
-        {
-            EffectedCharacter.ProjectileLauncherComponent.ProjectileCooldown *= 0.95f;
-        }
+        EffectedCharacter.GetNode<ProjectileLauncherComponent>("Components/BombProjectileLauncher").CurrentAmmunition += 1;
     }
 
     public void OnCharacterEnterBody(Node2D character)

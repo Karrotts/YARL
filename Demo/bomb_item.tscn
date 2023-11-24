@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://chqypb3sakigt"]
+[gd_scene load_steps=4 format=3 uid="uid://chqypb3sakigt"]
 
 [ext_resource type="PackedScene" uid="uid://dkfrrcgcwb8rn" path="res://Scenes/EntityBase/item_base.tscn" id="1_5tjrk"]
 [ext_resource type="Texture2D" uid="uid://dunv0efx0lhlx" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0105.png" id="2_nfjra"]
+[ext_resource type="Script" path="res://Demo/BombItem.cs" id="2_v1o5n"]
 
 [node name="BombItem" instance=ExtResource("1_5tjrk")]
+position = Vector2(9, 2)
+script = ExtResource("2_v1o5n")
 
 [node name="ItemSprite" parent="." index="0"]
 texture = ExtResource("2_nfjra")

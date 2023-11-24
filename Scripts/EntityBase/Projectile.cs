@@ -39,6 +39,9 @@ public partial class Projectile : Area2D
     [Export]
     public int PierceCount { get; set; }
 
+    [Export]
+    public bool MoveOnRotation { get; set; }
+
     private float _currentSpeed;
 
     public override void _Ready()
@@ -65,9 +68,17 @@ public partial class Projectile : Area2D
     {
         Vector2 movement = Position;
 
-        // move towards rotation
-        movement.X = Mathf.Cos(Rotation);
-        movement.Y = Mathf.Sin(Rotation);
+        // move towards rotation or direction
+        if (MoveOnRotation)
+        {
+            movement.X = Mathf.Cos(Rotation);
+            movement.Y = Mathf.Sin(Rotation);
+        } 
+        else
+        {
+            movement = MovingDirection;
+        }
+
         Position += movement * _currentSpeed * (float)delta;
         _currentSpeed -= Drag * (float)delta;
     }

@@ -103,8 +103,10 @@ public partial class MovementComponent : Node
 
     public void ApplyCounterForce(Vector2 direction, float forceAmount)
     {
+        TemporaryDisableMovement(.2f);
         ControllableEntity.Velocity = direction * forceAmount;
         ControllableEntity.MoveAndSlide();
+        
     }
 
     /// <summary>
@@ -118,5 +120,12 @@ public partial class MovementComponent : Node
             ControllableEntity.Velocity = ApplySpeed(movementVector);
             ControllableEntity.MoveAndSlide();
         }
+    }
+
+    private async void TemporaryDisableMovement(float length)
+    {
+        TemporaryStopMovement = true;
+        await ToSignal(GetTree().CreateTimer(length), SceneTreeTimer.SignalName.Timeout);
+        TemporaryStopMovement = false;
     }
 }

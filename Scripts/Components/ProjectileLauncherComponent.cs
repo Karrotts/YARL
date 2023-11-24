@@ -6,6 +6,21 @@ public partial class ProjectileLauncherComponent : Node2D
     public PackedScene Projectile { get; set; }
 
     [Export]
+    public bool RotateProjectile { get; set; }
+
+    [Export]
+    public bool HasAmmunition { get; set; }
+
+    [Export]
+    public int MaxAmmunition { get; set; }
+
+    [Export]
+    public int StartingAmmunition { get; set; }
+
+    [Export]
+    public string InputAction { get; set; }
+
+    [Export]
     public int ProjectileAmount { get; set; } = 1;
 
     [Export]
@@ -62,17 +77,28 @@ public partial class ProjectileLauncherComponent : Node2D
     }
 
     public bool CanProjectile { 
-        get { return ProjectileToggle && !ProjectileOnCooldown; } 
+        get { return ProjectileToggle && !ProjectileOnCooldown && (!HasAmmunition || CurrentAmmunition > 0); } 
+    }
+
+    public int CurrentAmmunition { 
+        get { return _currentAmmunition; }
+        set 
+        { 
+            _currentAmmunition = value > 0 ? (value <= MaxAmmunition ? value: MaxAmmunition) : 0;
+        }
     }
 
     private Timer _projectileTimer;
     private bool _projectileOnCooldown;
+    private int _currentAmmunition;
 
     public override void _Ready()
     {
         _projectileTimer = GetNode<Timer>("ProjectileCooldownTimer");
         _projectileTimer.WaitTime = ProjectileCooldown;
         _projectileTimer.Timeout += () => ProjectileOnCooldown = false;
+        CurrentAmmunition = StartingAmmunition;
+        
         ProjectileOnCooldown = false;
     }
 
@@ -88,10 +114,11 @@ public partial class ProjectileLauncherComponent : Node2D
 
     private void HandleAction()
     {
-        if (Input.IsMouseButtonPressed(MouseButton.Left) && CanProjectile)
+        if (Input.IsActionPressed(InputAction) && CanProjectile)
         {
             ProjectileOnCooldown = true;
             SpawnProjectiles();
+            if (HasAmmunition) CurrentAmmunition--;
         }
     }
 
@@ -102,7 +129,12 @@ public partial class ProjectileLauncherComponent : Node2D
         {
             Projectile projectile = (Projectile)Projectile.Instantiate();
             projectile.MovingDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized().Rotated(rotationAmount);
-            projectile.Rotate(projectile.MovingDirection.Angle());
+            
+            if (RotateProjectile)
+            {
+                projectile.Rotate(projectile.MovingDirection.Angle());
+            }
+
             projectile.StartingPosition = GetNode<Marker2D>("ProjectileLaunchPoint").GlobalPosition;
             ApplyModifiersToProjectile(projectile);
             GetTree().Root.AddChild(projectile);

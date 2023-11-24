@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8xamfum24wcd"]
+[gd_scene load_steps=8 format=3 uid="uid://c8xamfum24wcd"]
 
 [ext_resource type="PackedScene" uid="uid://dr7vsfq775lmo" path="res://Scenes/UI/character_ui.tscn" id="1_eifhl"]
 [ext_resource type="PackedScene" uid="uid://d3k0dgpmy171i" path="res://Scenes/UI/transition_layer.tscn" id="1_gqq01"]
 [ext_resource type="Texture2D" uid="uid://r7nii325rojt" path="res://Art/KennyAssets/Tiny/Town/Tilemap/tilemap_packed.png" id="1_xj48h"]
 [ext_resource type="PackedScene" uid="uid://djjxgqkfus31j" path="res://Scenes/Characters/harry.tscn" id="2_nqq1r"]
-[ext_resource type="PackedScene" uid="uid://2ogvo65ymrv7" path="res://Scenes/Enemies/practice_target.tscn" id="3_jlquo"]
 [ext_resource type="PackedScene" uid="uid://cutnutwdur0r4" path="res://Demo/demo_game.tscn" id="3_y4yt1"]
-[ext_resource type="PackedScene" uid="uid://dxhcodtgwyh6" path="res://Scenes/Enemies/ghost_enemy.tscn" id="4_toyag"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypap7"]
 texture = ExtResource("1_xj48h")
@@ -167,9 +165,3 @@ layer_0/tile_data = PackedInt32Array(-1572905, 65536, 0, -1507369, 65536, 0, -14
 [node name="Harry" parent="." instance=ExtResource("2_nqq1r")]
 
 [node name="DemoGame" parent="Harry" instance=ExtResource("3_y4yt1")]
-
-[node name="PracticeTarget" parent="." instance=ExtResource("3_jlquo")]
-position = Vector2(484, 192)
-
-[node name="GhostEnemy" parent="." instance=ExtResource("4_toyag")]
-position = Vector2(241, 72)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://djjxgqkfus31j"]
+[gd_scene load_steps=11 format=3 uid="uid://djjxgqkfus31j"]
 
 [ext_resource type="PackedScene" uid="uid://cwk1gdjca071j" path="res://Scenes/EntityBase/character_base.tscn" id="1_phsnr"]
 [ext_resource type="Script" path="res://Scripts/CharacterScripts/HarryCharacter.cs" id="2_rt80r"]
 [ext_resource type="PackedScene" uid="uid://c44ni78ff1wyp" path="res://Scenes/Components/projectile_launcher_component.tscn" id="3_3r1ga"]
 [ext_resource type="Texture2D" uid="uid://c5xeby4ldevli" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0065.png" id="3_vwe0p"]
 [ext_resource type="PackedScene" uid="uid://bms37d3cmxbp2" path="res://Scenes/Projectiles/arrow_projectile.tscn" id="4_oo0q5"]
+[ext_resource type="PackedScene" uid="uid://bwlgsv1v68m15" path="res://Scenes/Projectiles/bomb_projectile.tscn" id="6_273a0"]
 
 [sub_resource type="Animation" id="Animation_db7ng"]
 resource_name = "player_move"
@@ -75,8 +76,20 @@ MaxSpeed = 10000.0
 [node name="ProjectileLauncherComponent" parent="Components" index="2" instance=ExtResource("3_3r1ga")]
 position = Vector2(15, 2)
 Projectile = ExtResource("4_oo0q5")
+RotateProjectile = true
+InputAction = "shoot"
 ProjectileRotationAmount = 0.314
 ProjectileCooldown = 0.5
+RotateTowardsMouse = true
+
+[node name="BombProjectileLauncher" parent="Components" index="3" instance=ExtResource("3_3r1ga")]
+z_index = -1
+Projectile = ExtResource("6_273a0")
+HasAmmunition = true
+MaxAmmunition = 3
+StartingAmmunition = 3
+InputAction = "action"
+ProjectileRotationAmount = 3.14
 RotateTowardsMouse = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
