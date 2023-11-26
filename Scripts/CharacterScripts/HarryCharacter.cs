@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class HarryCharacter : Character
+public partial class HarryCharacter : Entity
 {
     [Export]
     public ProjectileLauncherComponent ProjectileLauncherComponent { get; set; }

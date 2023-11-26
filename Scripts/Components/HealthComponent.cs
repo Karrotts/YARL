@@ -2,6 +2,7 @@ using Godot;
 
 public partial class HealthComponent : Node
 {
+    #region SIGNALS
     [Signal]
     public delegate void HealthZeroEventHandler();
 
@@ -10,7 +11,9 @@ public partial class HealthComponent : Node
 
     [Signal]
     public delegate void OnHealthGainEventHandler();
+    #endregion
 
+    #region EXPORTS
     [Export(PropertyHint.Range, "0,10000")]
     public int MaxHealth { get; set; } = 10;
 
@@ -32,6 +35,7 @@ public partial class HealthComponent : Node
             }
         } 
     }
+    #endregion
 
     public bool HasTemporaryInvulnerability { get; set; } = false;
 
@@ -44,7 +48,7 @@ public partial class HealthComponent : Node
         get { return _currentHealth; }
         set 
         {
-            // deal no damage if invulerable
+            // deal no damage if invulnerable
             if (IsInvulnerable) return;
             if (value <= 0)
             {
@@ -88,15 +92,27 @@ public partial class HealthComponent : Node
     /// Deals an amount of damage, returns the remaining amount of health after damage is dealt
     /// </summary>
     /// <param name="amount">Amount of damage to deal</param>
-    /// <returns>Remaining health</returns>
-    public int DealDamage(int amount)
+    /// <param name="blocking">Triggers the invincibility timer if true</param>
+    /// <returns>Health after damage dealt</returns>
+    public int DealDamage(int amount, bool blocking = true)
     {
         if (_currentHealth <= 0) return 0;
-        CurrentHealth -= amount;
-        if (amount > 0)
-        {
-            EmitSignal(SignalName.OnDamageTaken, amount);
-        }
+
+        if (blocking)
+            CurrentHealth -= amount;
+        else
+            DealNonBlockingDamage(amount);
+
+        if (amount > 0) EmitSignal(SignalName.OnDamageTaken, amount);
+        
         return CurrentHealth;
+    }
+
+    private void DealNonBlockingDamage(int amount)
+    {
+        int old = _currentHealth;
+        _currentHealth -= amount;
+        if (_currentHealth == 0) EmitSignal(SignalName.HealthZero);
+        if (old < _currentHealth) EmitSignal(SignalName.OnHealthGain);
     }
 }

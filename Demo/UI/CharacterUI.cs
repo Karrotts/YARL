@@ -4,7 +4,7 @@ using System;
 public partial class CharacterUI : CanvasLayer
 {
     [Export]
-    public Character Character { get; set; }
+    public Entity Character { get; set; }
 
     [Export]
     public DemoGame DemoGame { get; set; }

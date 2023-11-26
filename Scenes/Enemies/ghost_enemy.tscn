@@ -155,12 +155,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_e851n"]
 radius = 26.0
 
-[node name="GhostEnemy" node_paths=PackedStringArray("HealthComponent", "MovementComponent") instance=ExtResource("1_mw2pu")]
+[node name="GhostEnemy" instance=ExtResource("1_mw2pu")]
 material = SubResource("ShaderMaterial_ll5dj")
 script = ExtResource("2_gc52v")
 DamageNumber = ExtResource("3_ch8ov")
-HealthComponent = NodePath("Components/HealthComponent")
-MovementComponent = NodePath("Components/MovementComponent")
 
 [node name="Sprites" parent="." index="0"]
 modulate = Color(1, 1, 1, 0.858824)
@@ -175,10 +173,14 @@ visible = false
 
 [node name="HealthComponent" parent="Components" index="0"]
 MaxHealth = 500
+StartHealth = 10
+TotalInvulnerability = false
 
 [node name="MovementComponent" parent="Components" index="1" node_paths=PackedStringArray("ControllableEntity")]
-ControllableEntity = NodePath("../..")
+IsPlayable = false
+ControllableEntity = NodePath("")
 StartingSpeed = 60.0
+ForceStopMovement = false
 
 [node name="GhostCollision" type="CollisionShape2D" parent="." index="2"]
 visible = false

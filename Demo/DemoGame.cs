@@ -41,7 +41,7 @@ public partial class DemoGame : Node2D
 
     public void SpawnEnemy()
     {
-        Enemy enemy = (Enemy)Enemies[GD.RandRange(0, Enemies.Length - 1)].Instantiate();
+        Entity enemy = (Entity)Enemies[GD.RandRange(0, Enemies.Length - 1)].Instantiate();
         PathFollow2D path = GetNode<PathFollow2D>("CharacterCamera/SpawnPath/PathFollow2D");
         path.ProgressRatio = GD.Randf();
         enemy.Position = path.GlobalPosition;

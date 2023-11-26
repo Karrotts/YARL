@@ -17,8 +17,8 @@ public partial class BombProjectile : Projectile
     {
         if (node.GetGroups().Contains("Enemy"))
         {
-            (node as Enemy).HealthComponent.DealDamage((int)(GD.RandRange(MinDamage, MaxDamage) * DamageModifier));
-            (node as Enemy).MovementComponent.ApplyCounterForce(GlobalPosition.DirectionTo(node.GlobalPosition), 1000f);
+            (node as Entity).HealthComponent.DealDamage((int)(GD.RandRange(MinDamage, MaxDamage) * DamageModifier));
+            (node as Entity).MovementComponent.ApplyCounterForce(GlobalPosition.DirectionTo(node.GlobalPosition), 1000f);
         }
     }
 }

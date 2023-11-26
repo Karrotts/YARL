@@ -87,7 +87,7 @@ public partial class Projectile : Area2D
     {
         if (node.GetGroups().Contains("Enemy"))
         {
-            (node as Enemy).HealthComponent.DealDamage((int)(GD.RandRange(MinDamage, MaxDamage) * DamageModifier));
+            (node as Entity).HealthComponent.DealDamage((int)(GD.RandRange(MinDamage, MaxDamage) * DamageModifier));
             if (PierceCount <= 0)
             {
                 QueueFree();

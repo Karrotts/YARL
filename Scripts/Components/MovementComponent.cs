@@ -3,12 +3,15 @@ using System;
 
 public partial class MovementComponent : Node
 {
+    #region SIGNALS
     [Signal]
     public delegate void OnStartMovingEventHandler();
 
     [Signal]
     public delegate void OnStopMovingEventHandler();
+    #endregion
 
+    #region EXPORTS
     [Export]
     [ExportGroup("Entity")]
     public bool IsPlayable { get; set; }
@@ -27,14 +30,24 @@ public partial class MovementComponent : Node
 
     [Export]
     public bool ForceStopMovement = false;
+    #endregion
 
+    /// <summary>
+    /// Temporarily stops the movement of the entity. Use this for any movement blockers.
+    /// </summary>
     public bool TemporaryStopMovement = false;
 
+    /// <summary>
+    /// True if the entity is currently able to move.
+    /// </summary>
     public bool CanMove
     {
         get { return !ForceStopMovement && !TemporaryStopMovement; }
     }
 
+    /// <summary>
+    /// Current speed multiplier of the entity
+    /// </summary>
     public float CurrentSpeed
     {
         get { return _currentSpeed; }
@@ -43,7 +56,10 @@ public partial class MovementComponent : Node
             _currentSpeed = value <= 0f ? 0f : value >= MaxSpeed ? MaxSpeed : value;
         }
     }
-
+    
+    /// <summary>
+    /// True if the entity is currently moving. Setting triggers signal OnStart or OnStop.
+    /// </summary>
     public bool IsMoving
     {
         get { return _isMoving; }
@@ -92,26 +108,32 @@ public partial class MovementComponent : Node
     }
 
     /// <summary>
-    /// Moves the entity in a direction with a 
+    /// Moves the entity in a direction
     /// </summary>
     /// <param name="movementVector"></param>
-    public void Move(Vector2 movementVector)
+    public void Move(Vector2 movementVector, bool overrideDisabledMovement = false)
     {
-        ControllableEntity.Velocity = ApplySpeed(movementVector);
-        ControllableEntity.MoveAndSlide();
+        if (CanMove || overrideDisabledMovement)
+        {
+            ControllableEntity.Velocity = ApplySpeed(movementVector);
+            ControllableEntity.MoveAndSlide();
+        }
     }
 
-    public void ApplyCounterForce(Vector2 direction, float forceAmount)
+    /// <summary>
+    /// Applies a force in a direction, disabling the movement for a specified period.
+    /// </summary>
+    /// <param name="direction">Direction to apply force to</param>
+    /// <param name="forceAmount">Force amount</param>
+    /// <param name="disableDuration">Time until can move again</param>
+    public void ApplyCounterForce(Vector2 direction, float forceAmount, float disableDuration = 0.2f)
     {
-        TemporaryDisableMovement(.2f);
+        TemporaryDisableMovement(disableDuration);
         ControllableEntity.Velocity = direction * forceAmount;
         ControllableEntity.MoveAndSlide();
         
     }
 
-    /// <summary>
-    /// Handles the player movement if enabled
-    /// </summary>
     private void HandlePlayerControls()
     {
         if (IsPlayable && CanMove)

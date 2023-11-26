@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public partial class Ghost : Enemy
+public partial class Ghost : Entity
 {
     [Export]
     public PackedScene DamageNumber { get; set; }
 
-    public Character Target { get; set; }
+    public Entity Target { get; set; }
     public PathFollow2D Path { get; set; }
 
     private AnimationPlayer _animationPlayer;
@@ -18,7 +18,7 @@ public partial class Ghost : Enemy
         base._Ready();
         foreach (Node node in GetTree().GetNodesInGroup("Character"))
         {
-                Target = (node as Character);
+                Target = (node as Entity);
                 break;
         }
         HealthComponent.HealthZero += OnHealthZero;

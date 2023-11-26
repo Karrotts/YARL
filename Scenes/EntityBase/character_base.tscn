@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwk1gdjca071j"]
 
-[ext_resource type="Script" path="res://Scripts/EntityBase/Character.cs" id="1_sp4wy"]
+[ext_resource type="Script" path="res://Scripts/EntityBase/Entity.cs" id="1_xpsa7"]
 [ext_resource type="Texture2D" uid="uid://cmtw3wt3g4owl" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0098.png" id="2_uprfs"]
 [ext_resource type="PackedScene" uid="uid://d3fbq5d07sjkb" path="res://Scenes/Components/health_component.tscn" id="2_xq86r"]
 [ext_resource type="PackedScene" uid="uid://bcngvuy27q2wn" path="res://Scenes/Components/movement_component.tscn" id="3_br7va"]
 [ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="3_y7nk2"]
 
 [node name="CharacterBase" type="CharacterBody2D" groups=["Character", "Entity"]]
-script = ExtResource("1_sp4wy")
+script = ExtResource("1_xpsa7")
 
 [node name="Sprites" type="Node2D" parent="."]
 

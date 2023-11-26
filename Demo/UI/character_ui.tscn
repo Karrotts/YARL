@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dr7vsfq775lmo"]
 
 [ext_resource type="FontFile" uid="uid://cgxfsq5cc33jo" path="res://Art/PublicPixel-z84yD.ttf" id="1_n78dd"]
-[ext_resource type="Script" path="res://Scenes/UI/CharacterUI.cs" id="1_sj12r"]
+[ext_resource type="Script" path="res://Demo/UI/CharacterUI.cs" id="1_sj12r"]
 [ext_resource type="Texture2D" uid="uid://c5xeby4ldevli" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0065.png" id="3_rrwvd"]
 
 [sub_resource type="Animation" id="Animation_y2hlu"]

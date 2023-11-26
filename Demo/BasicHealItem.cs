@@ -3,7 +3,7 @@ using System;
 
 public partial class BasicHealItem : Item
 {
-    public Character EffectedCharacter;
+    public Entity EffectedCharacter;
     public override void _Ready()
     {
         base._Ready();
@@ -17,9 +17,9 @@ public partial class BasicHealItem : Item
 
     public void OnCharacterEnterBody(Node2D character)
     {
-        if (character is Character)
+        if (character is Entity)
         {
-            EffectedCharacter = (Character)character;
+            EffectedCharacter = (Entity)character;
             ApplyItem();
             QueueFree();
         }

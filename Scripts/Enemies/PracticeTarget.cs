@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PracticeTarget : Enemy
+public partial class PracticeTarget : Entity
 {
     [Export]
     public PackedScene DamageNumber { get; set; }
