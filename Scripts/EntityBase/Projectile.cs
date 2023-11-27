@@ -3,6 +3,7 @@ using System;
 
 public partial class Projectile : Area2D
 {
+    #region EXPORTS
     [Export(PropertyHint.Range, "0,10000")]
     public float Speed { get; set; }
 
@@ -41,6 +42,10 @@ public partial class Projectile : Area2D
 
     [Export]
     public bool MoveOnRotation { get; set; }
+
+    [Export]
+    public string HitBody { get; set; } = "Enemy";
+    #endregion
 
     private float _currentSpeed;
 
@@ -85,7 +90,7 @@ public partial class Projectile : Area2D
 
     public virtual void OnBodyEntered(Node2D node)
     {
-        if (node.GetGroups().Contains("Enemy"))
+        if (node.GetGroups().Contains(HitBody))
         {
             (node as Entity).HealthComponent.DealDamage((int)(GD.RandRange(MinDamage, MaxDamage) * DamageModifier));
             if (PierceCount <= 0)

@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddo32eii23ff2"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Title/TitleGhost.cs" id="1_4vt1q"]
+[ext_resource type="Texture2D" uid="uid://xfluj6ugiair" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0121.png" id="2_berpc"]
+
+[sub_resource type="Animation" id="Animation_6bccc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/EnemySprite:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bgs7j"]
+resource_name = "be_ghostly"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/EnemySprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.964706), Color(1, 1, 1, 0.611765), Color(1, 1, 1, 0.964706)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/EnemySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6, 2.4, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2.5), Vector2(2, 2), Vector2(2, 2.2), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/EnemySprite:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.3, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwacd"]
+_data = {
+"RESET": SubResource("Animation_6bccc"),
+"be_ghostly": SubResource("Animation_bgs7j")
+}
+
+[node name="TitleGhost" type="Node2D"]
+script = ExtResource("1_4vt1q")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="EnemySprite" type="Sprite2D" parent="Sprites"]
+modulate = Color(1, 1, 1, 0.66273)
+texture_filter = 1
+scale = Vector2(2, 2.02915)
+skew = 0.0400113
+texture = ExtResource("2_berpc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "be_ghostly"
+libraries = {
+"": SubResource("AnimationLibrary_pwacd")
+}

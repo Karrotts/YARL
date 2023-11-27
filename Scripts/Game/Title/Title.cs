@@ -12,13 +12,18 @@ public partial class Title : Node2D
 
     public override void _Ready()
     {
-        _markers = GetNode<Node2D>("Markers").GetChildren();   
+        _markers = GetNode<Node2D>("Markers").GetChildren();
+        GetNode<Button>("ExitButton").Pressed += ExitGame;
     }
 
     public override void _Process(double delta)
     {
-        if (spawnIndex >= _markers.Count) return;
+        SpawnGhosts();
+    }
 
+    private void SpawnGhosts()
+    {
+        if (spawnIndex >= _markers.Count) return;
         PathFollow2D path = GetNode<PathFollow2D>("Path2D/PathFollow2D");
         path.ProgressRatio = GD.Randf();
         TitleGhost titleGhost = (TitleGhost)Node.Instantiate();
@@ -26,6 +31,11 @@ public partial class Title : Node2D
         titleGhost.Marker = _markers[spawnIndex] as Marker2D;
         AddChild(titleGhost);
         spawnIndex++;
+    }
 
+    private void ExitGame()
+    {
+        GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);
+        GetTree().Quit();
     }
 }

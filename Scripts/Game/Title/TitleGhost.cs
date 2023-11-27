@@ -10,10 +10,10 @@ public partial class TitleGhost : Node2D
     {
         base._Process(delta);
         if (GlobalPosition.DistanceTo(Marker.GlobalPosition) <= 2.2f * (Speed / 100f)) return;
-        GD.Print(GlobalPosition.DistanceTo(Marker.GlobalPosition));
 
         Vector2 movement = GlobalPosition.DirectionTo(Marker.GlobalPosition);
         movement *= Speed;
         GlobalPosition += movement * (float)delta;
+        GetNode<Sprite2D>("Sprites/EnemySprite").FlipH = GlobalPosition.X > Marker.GlobalPosition.X;
     }
 }
