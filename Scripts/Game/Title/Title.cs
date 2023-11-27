@@ -14,6 +14,7 @@ public partial class Title : Node2D
     {
         _markers = GetNode<Node2D>("Markers").GetChildren();
         GetNode<Button>("ExitButton").Pressed += ExitGame;
+        GetNode<Button>("StartButton").Pressed += StartGame;
     }
 
     public override void _Process(double delta)
@@ -31,6 +32,11 @@ public partial class Title : Node2D
         titleGhost.Marker = _markers[spawnIndex] as Marker2D;
         AddChild(titleGhost);
         spawnIndex++;
+    }
+
+    private void StartGame()
+    {
+
     }
 
     private void ExitGame()

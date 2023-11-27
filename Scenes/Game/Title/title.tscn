@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cuobdaas28acd"]
+[gd_scene load_steps=16 format=3 uid="uid://cuobdaas28acd"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Title/Title.cs" id="1_wq1ha"]
 [ext_resource type="PackedScene" uid="uid://ddo32eii23ff2" path="res://Scenes/Game/Title/title_ghost.tscn" id="2_5djee"]
 [ext_resource type="Texture2D" uid="uid://r7nii325rojt" path="res://Art/KennyAssets/Tiny/Town/Tilemap/tilemap_packed.png" id="3_g5sv5"]
 [ext_resource type="FontFile" uid="uid://cgxfsq5cc33jo" path="res://Art/PublicPixel-z84yD.ttf" id="4_jvat6"]
+[ext_resource type="Texture2D" uid="uid://blmtmm6fyl3jh" path="res://Art/Custom/loading.png" id="5_geesn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_julgu"]
 texture = ExtResource("3_g5sv5")
@@ -187,6 +188,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Loading:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 25.1327]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fnfix"]
 _data = {
@@ -345,6 +358,7 @@ position = Vector2(-33, -46)
 rotation = -0.00357652
 
 [node name="StartButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_left = 498.0
 offset_top = 356.0
 offset_right = 666.0
@@ -381,6 +395,7 @@ text = "START GAME"
 metadata/_edit_lock_ = true
 
 [node name="ExitButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_left = 498.0
 offset_top = 418.0
 offset_right = 666.0
@@ -429,3 +444,9 @@ offset_right = 290.0
 offset_bottom = 726.0
 theme_override_fonts/font = ExtResource("4_jvat6")
 text = "YARL v23.03 DEV"
+
+[node name="Loading" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(337, 492)
+scale = Vector2(2, 2)
+texture = ExtResource("5_geesn")
