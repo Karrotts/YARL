@@ -3,44 +3,50 @@ using System;
 
 public partial class Ghost : Entity
 {
-    [Export]
-    public PackedScene DamageNumber { get; set; }
-
     public Entity Target { get; set; }
     public PathFollow2D Path { get; set; }
 
-    private AnimationPlayer _animationPlayer;
-    private bool _ghostIsAttacking = false;
+    public PackedScene DamageNumber { get; set; }
+
+    private AnimationPlayer _generalAnimationPlayer;
+    private AnimationPlayer _hitAnimationPlayer;
     private bool _playerInAttackRange = false;
 
     public override void _Ready()
     {
         base._Ready();
-        foreach (Node node in GetTree().GetNodesInGroup("Character"))
-        {
-                Target = (node as Entity);
-                break;
-        }
+
+        DamageNumber = ResourceLoader.Load<PackedScene>(SceneRepository.DamageNumber);
+
         HealthComponent.HealthZero += OnHealthZero;
         HealthComponent.OnDamageTaken += OnDamageTaken;
-        GetNode<Area2D>("AttackRange").BodyEntered += OnCharacterEnterAttackRange;
-        GetNode<Area2D>("AttackRange").BodyExited += OnCharacterExitAttackRange;
-        GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").ScreenExited += RespawnEnemy;
-        _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        Area2D attackRangeArea = GetNode<Area2D>("AttackRange");
+        attackRangeArea.BodyEntered += OnCharacterEnterAttackRange;
+        attackRangeArea.BodyExited += OnCharacterExitAttackRange;
+
+        _generalAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayers/GeneralAnimation");
+        _hitAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayers/HitAnimation");
+
+        // set the player as the target
+        foreach(Node node in GetTree().Root.GetNode<Node2D>("DemoLevel").GetChildren())
+        {
+            if (node.GetGroups().Contains("Character"))
+            {
+                Target = node as Entity;
+                break;
+            }
+        }
     }
 
     public override void _Process(double delta)
     {
         HandleSpriteFlip();
         HandleGhostMovement(delta);
-
-        if (!_ghostIsAttacking && !HealthComponent.IsInvulnerable) _animationPlayer.Play("be_ghostly");
-        if (_ghostIsAttacking) _animationPlayer?.Play("attack");
     }
 
     public void OnHealthZero()
     {
-        GetNode<EnemyDrops>("EnemyDrops").DropLoot();
         QueueFree();
     }
 
@@ -48,9 +54,9 @@ public partial class Ghost : Entity
     {
         DamageText damageText = (DamageText)DamageNumber.Instantiate();
         damageText.Number = amount;
-        damageText.Position = GetNode<Marker2D>("Marker2D").GlobalPosition;
+        damageText.Position = GetNode<Marker2D>("HitSpawnPoint").GlobalPosition;
         GetTree().Root.AddChild(damageText);
-        _animationPlayer.Play("hit");
+        _hitAnimationPlayer.Play("hit");
     }
 
     public void HitPlayer()
@@ -75,7 +81,6 @@ public partial class Ghost : Entity
     {
         if (node.GetGroups().Contains("Character"))
         {
-            _ghostIsAttacking = true;
             _playerInAttackRange = true;
         }
     }
@@ -84,14 +89,7 @@ public partial class Ghost : Entity
     {
         if (node.GetGroups().Contains("Character"))
         {
-            _ghostIsAttacking = false;
             _playerInAttackRange = false;
         }
-    }
-
-    private void RespawnEnemy()
-    {
-        Path.ProgressRatio = GD.Randf();
-        GlobalPosition = Path.GlobalPosition;
     }
 }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8xamfum24wcd"]
+[gd_scene load_steps=7 format=3 uid="uid://c8xamfum24wcd"]
 
 [ext_resource type="PackedScene" uid="uid://d3k0dgpmy171i" path="res://Demo/UI/transition_layer.tscn" id="1_gqq01"]
 [ext_resource type="Texture2D" uid="uid://r7nii325rojt" path="res://Art/KennyAssets/Tiny/Town/Tilemap/tilemap_packed.png" id="1_xj48h"]
 [ext_resource type="PackedScene" uid="uid://djjxgqkfus31j" path="res://Scenes/Characters/harry.tscn" id="2_nqq1r"]
+[ext_resource type="PackedScene" uid="uid://dxhcodtgwyh6" path="res://Scenes/Enemies/ghost_enemy.tscn" id="4_cklkb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypap7"]
 texture = ExtResource("1_xj48h")
@@ -160,3 +161,6 @@ layer_0/tile_data = PackedInt32Array(-1572905, 65536, 0, -1507369, 65536, 0, -14
 [node name="Camera2D" type="Camera2D" parent="Harry"]
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
+
+[node name="GhostEnemy" parent="." instance=ExtResource("4_cklkb")]
+position = Vector2(342, 191)
