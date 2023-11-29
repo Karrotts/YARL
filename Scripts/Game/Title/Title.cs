@@ -29,14 +29,25 @@ public partial class Title : Node2D
         path.ProgressRatio = GD.Randf();
         TitleGhost titleGhost = (TitleGhost)Node.Instantiate();
         titleGhost.GlobalPosition = path.GlobalPosition;
-        titleGhost.Marker = _markers[spawnIndex] as Marker2D;
+        titleGhost.Target = (_markers[spawnIndex] as Marker2D).GlobalPosition;
+        titleGhost.StartPosition = titleGhost.GlobalPosition;
         AddChild(titleGhost);
         spawnIndex++;
     }
 
-    private void StartGame()
+    private async void StartGame()
     {
-
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("title_exit");
+        Array<Node> nodes = GetChildren();
+        foreach (Node node in nodes)
+        {
+            if (node is TitleGhost)
+            {
+                (node as TitleGhost).GoHome();
+            }
+        }
+        await ToSignal(GetTree().CreateTimer(2f), SceneTreeTimer.SignalName.Timeout);
+        GetNode<GlobalControls>("/root/GlobalControls").GotoScene(SceneRepository.DemoLevel);
     }
 
     private void ExitGame()

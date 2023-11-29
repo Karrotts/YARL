@@ -63,9 +63,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_vwe0p")
 
 [node name="HealthComponent" parent="Components" index="0"]
-MaxHealth = 10
-StartHealth = 10
-TotalInvulnerability = false
 InvulnerabilityTime = 0.5
 
 [node name="MovementComponent" parent="Components" index="1" node_paths=PackedStringArray("ControllableEntity")]
@@ -73,11 +70,11 @@ IsPlayable = true
 ControllableEntity = NodePath("../..")
 StartingSpeed = 100.0
 MaxSpeed = 10000.0
-ForceStopMovement = false
 
 [node name="ProjectileLauncherComponent" parent="Components" index="2" instance=ExtResource("3_3r1ga")]
 position = Vector2(15, 2)
 Projectile = ExtResource("4_oo0q5")
+RotateProjectile = true
 InputAction = "shoot"
 ProjectileRotationAmount = 0.314
 ProjectileCooldown = 0.5
