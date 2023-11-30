@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://copklai2vf1rc"]
+
+[ext_resource type="Texture2D" uid="uid://r7nii325rojt" path="res://Art/KennyAssets/Tiny/Town/Tilemap/tilemap_packed.png" id="1_51bf3"]
+[ext_resource type="FontFile" uid="uid://cgxfsq5cc33jo" path="res://Art/PublicPixel-z84yD.ttf" id="1_xx0st"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn50n"]
+atlas = ExtResource("1_51bf3")
+region = Rect2(2, 17, 44, 45)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y8aak"]
+texture = SubResource("AtlasTexture_cn50n")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[resource]
+default_font = ExtResource("1_xx0st")
+Panel/styles/panel = SubResource("StyleBoxTexture_y8aak")
