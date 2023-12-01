@@ -13,7 +13,7 @@ config_version=5
 config/name="YARL"
 config/description="Yet Another Roguelike!"
 run/main_scene="res://Scenes/Game/Title/title.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/show_image=false
 config/icon="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0019.png"
@@ -27,7 +27,6 @@ DebugUi="*res://Scenes/Debug/debug_ui.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0060.png"

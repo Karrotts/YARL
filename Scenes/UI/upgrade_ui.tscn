@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdrxeffwh2of5"]
+[gd_scene load_steps=6 format=3 uid="uid://bdrxeffwh2of5"]
 
+[ext_resource type="Script" path="res://Scripts/Game/UI/UpgradeUI.cs" id="1_4rv63"]
 [ext_resource type="FontFile" uid="uid://cgxfsq5cc33jo" path="res://Art/PublicPixel-z84yD.ttf" id="1_org4u"]
 [ext_resource type="PackedScene" uid="uid://byiw7rct0t4im" path="res://Scenes/UI/upgrade_option.tscn" id="2_defd6"]
 [ext_resource type="Texture2D" uid="uid://gu834ioj3ypl" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0119.png" id="2_uxrx8"]
 [ext_resource type="Texture2D" uid="uid://dunv0efx0lhlx" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0105.png" id="4_cwpic"]
 
 [node name="UpgradeUI" type="CanvasLayer"]
+script = ExtResource("1_4rv63")
 
 [node name="CenterLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -23,7 +25,7 @@ theme_override_fonts/font = ExtResource("1_org4u")
 theme_override_font_sizes/font_size = 25
 text = "SELECT AN UPGRADE"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="UpgradeContainer" type="HBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -39,17 +41,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="UpgradeOption" parent="HBoxContainer" instance=ExtResource("2_defd6")]
+[node name="UpgradeOption" parent="UpgradeContainer" instance=ExtResource("2_defd6")]
 layout_mode = 2
 DebuffText = "-0.2s Enemy Spawn Speed"
 
-[node name="UpgradeOption2" parent="HBoxContainer" instance=ExtResource("2_defd6")]
+[node name="UpgradeOption2" parent="UpgradeContainer" instance=ExtResource("2_defd6")]
 layout_mode = 2
 Texture = ExtResource("2_uxrx8")
 BuffText = "+3 Damage"
 DebuffText = "+1 Enemy Damage"
 
-[node name="UpgradeOption3" parent="HBoxContainer" instance=ExtResource("2_defd6")]
+[node name="UpgradeOption3" parent="UpgradeContainer" instance=ExtResource("2_defd6")]
 layout_mode = 2
 Texture = ExtResource("4_cwpic")
 BuffText = "+1 Max Bombs"
