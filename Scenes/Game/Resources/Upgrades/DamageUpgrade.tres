@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b0u2onn0pmp1"]
+
+[ext_resource type="Texture2D" uid="uid://7hnmfeid1uyw" path="res://Art/KennyAssets/Tiny/Dungeon/Tiles/tile_0103.png" id="1_8ukrk"]
+[ext_resource type="Script" path="res://Scripts/Game/Resources/Upgrades/Upgrade.cs" id="1_b00a7"]
+
+[resource]
+script = ExtResource("1_b00a7")
+UpgradeOptions = 0
+Modifier = 1.0
+Texture = ExtResource("1_8ukrk")
+UpgradeText = "+2 Damage"

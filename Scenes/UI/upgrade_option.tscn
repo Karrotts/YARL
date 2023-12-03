@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cgxfsq5cc33jo" path="res://Art/PublicPixel-z84yD.ttf" id="2_3slxh"]
 [ext_resource type="Texture2D" uid="uid://bej5g5rp81cj3" path="res://Art/Custom/ui_panel.png" id="2_rucfa"]
 [ext_resource type="Script" path="res://Scripts/Game/UI/UpgradeOption.cs" id="2_thwb8"]
-[ext_resource type="Texture2D" uid="uid://wjdx2yar0565" path="res://Art/KennyAssets/Tiny/Town/Tiles/tile_0029.png" id="3_d60bg"]
+[ext_resource type="Resource" uid="uid://b0u2onn0pmp1" path="res://Scenes/Game/Resources/Upgrades/DamageUpgrade.tres" id="3_5eyw6"]
 [ext_resource type="Texture2D" uid="uid://doiwdh2er12t3" path="res://Art/KennyAssets/Particles/PNG (Transparent)/circle_05.png" id="4_noc0v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j1jk1"]
@@ -32,8 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vag80")
 script = ExtResource("2_thwb8")
-Texture = ExtResource("3_d60bg")
-BuffText = "+5% Speed"
+Upgrade = ExtResource("3_5eyw6")
 DebuffText = "-0.2s Enemy
 Spawn"
 DefaultColor = Color(0.807843, 0.807843, 0.807843, 1)

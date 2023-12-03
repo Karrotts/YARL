@@ -1,13 +1,21 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class UpgradeUI : CanvasLayer
 {
+    [Export]
+    public PackedScene UpgradeOption;
+
+    [Export]
+    public Array<Upgrade> UpgardeOptions;
+
     private HBoxContainer _upgradeContainer;
 
     public override void _Ready()
     {
         _upgradeContainer = GetNode<HBoxContainer>("UpgradeContainer");
+        SpawnUpgradeOptions();
     }
 
     public override void _Process(double delta)
@@ -15,7 +23,17 @@ public partial class UpgradeUI : CanvasLayer
         NormalizeUpgradeSize();
     }
 
-    public void NormalizeUpgradeSize()
+    private void SpawnUpgradeOptions()
+    {
+        foreach (Upgrade upgrade in UpgardeOptions)
+        {
+            UpgradeOption upgradeOption = (UpgradeOption)UpgradeOption.Instantiate();
+            upgradeOption.Upgrade = upgrade;
+            _upgradeContainer.AddChild(upgradeOption);
+        }
+    }
+
+    private void NormalizeUpgradeSize()
     {
         float largestY = 0;
         foreach (Node node in _upgradeContainer.GetChildren())

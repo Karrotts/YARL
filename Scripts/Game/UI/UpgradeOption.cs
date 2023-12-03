@@ -4,10 +4,7 @@ using System;
 public partial class UpgradeOption : Control
 {
     [Export]
-    public CompressedTexture2D Texture { get; set; }
-
-    [Export(PropertyHint.MultilineText)]
-    public string BuffText { get; set; } = "";
+    public Upgrade Upgrade { get; set; }
 
     [Export(PropertyHint.MultilineText)]
     public string DebuffText { get; set; } = "";
@@ -30,12 +27,12 @@ public partial class UpgradeOption : Control
 
     public override void _Ready()
     {
-        GetNode<TextureRect>("%UpgradeIcon").Texture = Texture;
+        GetNode<TextureRect>("%UpgradeIcon").Texture = (Texture2D)Upgrade.Texture;
         _buffLabel = GetNode<Label>("%BuffLabel");
         _debuffLabel = GetNode<Label>("%DebuffLabel");
         _panelContainer = GetNode<PanelContainer>("PanelContainer");
 
-        _buffLabel.Text = BuffText;
+        _buffLabel.Text = Upgrade.UpgradeText;
         _debuffLabel.Text = DebuffText;
 
         _panelContainer.GetNode<Panel>("Panel").Modulate = DefaultColor;
@@ -47,7 +44,7 @@ public partial class UpgradeOption : Control
     {
         if (Input.IsMouseButtonPressed(MouseButton.Left) && _highlighted)
         {
-            GD.Print(BuffText);
+            GD.Print(Upgrade.UpgradeText);
             QueueFree();
         }
     }
