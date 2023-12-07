@@ -3,6 +3,12 @@ using System;
 
 public partial class UpgradeOption : Control
 {
+    [Signal]
+    public delegate void UpgradeItemSelectedEventHandler(int id);
+
+    [Export]
+    public int Id;
+
     [Export]
     public Upgrade Upgrade { get; set; }
 
@@ -44,8 +50,7 @@ public partial class UpgradeOption : Control
     {
         if (Input.IsMouseButtonPressed(MouseButton.Left) && _highlighted)
         {
-            GD.Print(Upgrade.UpgradeText);
-            QueueFree();
+            EmitSignal(SignalName.UpgradeItemSelected, Id);
         }
     }
 

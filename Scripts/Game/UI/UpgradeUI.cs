@@ -25,10 +25,13 @@ public partial class UpgradeUI : CanvasLayer
 
     private void SpawnUpgradeOptions()
     {
+        int id = 0;
         foreach (Upgrade upgrade in UpgardeOptions)
         {
             UpgradeOption upgradeOption = (UpgradeOption)UpgradeOption.Instantiate();
             upgradeOption.Upgrade = upgrade;
+            upgradeOption.Id = id++;
+            upgradeOption.UpgradeItemSelected += HandleOptionSelected;
             _upgradeContainer.AddChild(upgradeOption);
         }
     }
@@ -49,5 +52,10 @@ public partial class UpgradeUI : CanvasLayer
             Vector2 newSize = new Vector2((node as UpgradeOption).PanelSize.X, largestY);
             (node as UpgradeOption).PanelSize = newSize;
         }
+    }
+
+    private void HandleOptionSelected(int id)
+    {
+        GD.Print(id);
     }
 }
